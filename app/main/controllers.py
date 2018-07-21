@@ -1,24 +1,24 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, url_for
 
 
 main = Blueprint('main', __name__, template_folder='templates')
 
 
+@main.route('/index')
 @main.route('/')
 def index():
 
-    test = {
-        "hello": "Hello",
-        "world": "World"
-    }
+    links = [
+        {"title": "VEEP", "url": url_for('.index')},
+        {"title": "Projects", "url": url_for('.projects')}
+        # {"title": "Contact Us", "url": url_for('.contact_us')}
+    ]
 
-    return render_template("index.htm", test=test)
+    return render_template("index.htm", links=links)
 
-@main.route('/')
+
+@main.route('/projects')
 def projects():
 
-	test = {
-	"hello": "Hello",
-	"world": "World"
-	}
-	return render_template("projects.htm",test2=test)
+
+	return "Derp"
