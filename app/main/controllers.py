@@ -13,3 +13,12 @@ def index():
     }
 
     return render_template("index.htm", test=test)
+
+@main.route('/')
+def projects():
+
+	test = {
+	"hello": "Hello",
+	"world": "World"
+	}
+	return render_template("projects.htm",test2=test)
