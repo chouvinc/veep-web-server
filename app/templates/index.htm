@@ -10,9 +10,24 @@
     <div class="header">
       <ul>
         {% for link in links %}
-        <li><a href="{{link.url}}">{{link.title}}</a></li>
+        <li><a href="{{link['url']}}">{{link['title']}}</a></li>
         {% endfor %}
       </ul>
+    </div>
+    {% endblock %}
+
+    {% block footer %}
+    <div class="footer">
+      {% for category in footer_items %}
+      <div class="category">
+        <h4>{{category['title']}}</h4>
+        <ul>
+            {% for item in category['items'] %}
+            <li><a href="{{item['url']}}">{{item['title']}}</a></li>
+            {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
     </div>
     {% endblock %}
   </body>
