@@ -2,16 +2,21 @@
 {% block content %}
 <h1>Sign In</h1>
 <!-- No need to validate here, flask handles it server-side -->
-<!-- Can possibly add things like "password cannot have spaces" for better user-experience, but for now just leave it -->
 <form action="" method="post" novalidate>
     {{ form.hidden_tag() }}
     <p>
         {{ form.username.label }}<br>
         {{ form.username(size=32) }}
+        {% for error in form.username.errors %}
+        <span class="error">[{{ error }}]</span>
+        {% endfor %}
     </p>
     <p>
         {{ form.password.label }}<br>
         {{ form.password(size=32) }}
+        {% for error in form.password.errors %}
+        <span class="error">[{{ error }}]</span>
+        {% endfor %}
     </p>
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
     <p>{{ form.submit() }}</p>

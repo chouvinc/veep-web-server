@@ -8,13 +8,26 @@
   <body>
       <div class="header">
           <ul>
-              <li><a href="/">VEEP</a></li>
-              <li><a href="/projects">Projects</a></li>
-              <li><a href="/contact_us">Contact Us</a></li>
-              <li><a href="/our_team">Our Team</a></li>
-              <li><a href="/blog">Blog</a></li>
+              <li><a href="{{url_for('main.index')}}">VEEP</a></li>
+              <li><a href="{{url_for('main.projects')}}">Projects</a></li>
+              <!--TODO: add the links for this once its up-->
+              <li><a href="/">Contact Us</a></li>
+              <li><a href="/">Our Team</a></li>
+              <li><a href="/">Blog</a></li>
           </ul>
       </div>
+
+      <hr>
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+      <hr>
 
       {% block content %}
       {% endblock %}
