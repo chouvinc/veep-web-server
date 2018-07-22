@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
       <title>Test</title>
-      <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+      <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
       <meta charset="utf-8">
   </head>
   <body>
@@ -22,12 +22,11 @@
       {% if messages %}
       <ul>
           {% for message in messages %}
-          <li>{{ message }}</li>
+          <li class="warning">{{ message }}</li>
           {% endfor %}
       </ul>
       {% endif %}
       {% endwith %}
-      <hr>
 
       {% block content %}
       {% endblock %}
@@ -52,5 +51,14 @@
               </ul>
           </div>
        </div>
+
+      <!--include jquery. Also keep scripts at bottom here because js can block browser from
+      grabbing other stuff online, slowing page load.-->
+      <script
+              src="https://code.jquery.com/jquery-3.3.1.js"
+              integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+              crossorigin="anonymous"></script>
+      {% block scripts %}
+      {% endblock %}
   </body>
 </html>

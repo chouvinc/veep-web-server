@@ -1,3 +1,18 @@
 {% extends "base.htm" %}
 {% block content %}
 <p><a href="{{url_for('.logout')}}">Logout</a></p>
+
+<div class="portal">
+    <div class="newsfeed">
+        <h3>Newsfeed</h3>
+        This should have an audit history of who is adding what!
+    </div>
+    
+    <div class="adminActions">
+        <ul>
+            <li><a href="{{url_for('.submit')}}">Submit</a></li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}
