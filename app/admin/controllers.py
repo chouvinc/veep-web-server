@@ -51,8 +51,10 @@ def submit():
 # Use this endpoint to add new users to the admin portal
 @admin.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated:
-        return redirect(url_for('.index'))
+    if not current_user.is_authenticated:
+        admin_only_msg = "Sorry, only executives are allowed to register other members for the admin portal."
+        flash(admin_only_msg)
+        return render_template('register.htm', title='Register', admin_only_msg=admin_only_msg)
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)

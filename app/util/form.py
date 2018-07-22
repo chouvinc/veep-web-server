@@ -10,7 +10,7 @@ class LoginForm(FlaskForm):
 
 class SubmitInfoForm(FlaskForm):
     select = SelectField('Type',
-                         choices=['Project', 'Team Member', 'Executive'],
+                         choices=[('project', 'Project'), ('team_member', 'Team Member'), ('executive', 'Executive')],
                          default='Please select a field')
 
     # for select = Project
