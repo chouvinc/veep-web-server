@@ -2,12 +2,13 @@ from flask import Flask
 from flask_login import LoginManager
 from app.main.controllers import main
 from app.admin.controllers import admin
+from config import Config
 
 app = Flask(__name__,
             instance_relative_config=True,
             template_folder='templates')
 
-app.secret_key = '123'
+app.config.from_object(Config)
 
 login_manager = LoginManager()
 login_manager.init_app(app)

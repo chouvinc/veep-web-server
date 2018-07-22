@@ -1,7 +1,6 @@
-from flask import Blueprint, request, render_template
-from flask_login import current_user
-
-
+from flask import Blueprint, request, render_template, redirect, url_for
+from flask_login import current_user, login_user
+from app.util.form import LoginForm
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
@@ -11,7 +10,18 @@ def index():
     if current_user.is_authenticated:
         return render_template("submit.htm")
     else:
-        return render_template("login.htm")
+        return redirect(url_for('.login'))
+
+@admin.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.username.data, form.remember_me.data
+        ))
+        return redirect(url_for('.index'))
+    return render_template('login.htm', title='Sign-up', form=form)
+
 
 
 # TODO, the login template should have a form with the following elements:
