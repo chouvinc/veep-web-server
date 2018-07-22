@@ -1,34 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Test</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
-    <meta charset="utf-8">
+      <title>Test</title>
+      <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+      <meta charset="utf-8">
   </head>
   <body>
-    {% block header %}
-    <div class="header">
-      <ul>
-        {% for link in links %}
-        <li><a href="{{link['url']}}">{{link['title']}}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-    {% endblock %}
-
-    {% block footer %}
-    <div class="footer">
-      {% for category in footer_items %}
-      <div class="category">
-        <h4>{{category['title']}}</h4>
-        <ul>
-            {% for item in category['items'] %}
-            <li><a href="{{item['url']}}">{{item['title']}}</a></li>
-            {% endfor %}
-        </ul>
+      {% block header %}
+      <div class="header">
+          <ul>
+              <li><a href="/">VEEP</a></li>
+              <li><a href="/projects">Projects</a></li>
+              <li><a href="/contact_us">Contact Us</a></li>
+              <li><a href="/our_team">Our Team</a></li>
+              <li><a href="/blog">Blog</a></li>
+          </ul>
       </div>
-      {% endfor %}
-    </div>
-    {% endblock %}
+      {% endblock %}
+
+      {% block footer %}
+      <div class="footer">
+          <div class="category">
+              <h4>Social Media</h4>
+              <ul>
+                  <li><a href="/">Facebook</a></li>
+                  <li><a href="/">Placeholder</a></li>
+              </ul>
+          </div>
+          <div class="category">
+              <h4>Apply</h4>
+              <ul>
+                  <li><a href="/">Project Manager</a></li>
+                  <li><a href="/">Project Member</a></li>
+                  <li><a href="/">Marketing</a></li>
+                  <li><a href="/">Business Development</a></li>
+                  <li><a href="/">Operations</a></li>
+                  <li><a href="/">Digital Team</a></li>
+              </ul>
+          </div>
+       </div>
+      {% endblock %}
   </body>
 </html>
