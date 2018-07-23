@@ -64,3 +64,6 @@ def register():
         flash('Registered!')
         return redirect(url_for('.login'))
     return render_template('register.htm', title='Register', form=form)
+
+# TODO: change register to add username/email only, and then check in login if user has a password.
+# TODO: If they don't have a password prompt them to create one (so we can continue w/ the execs add other execs paradigm)
