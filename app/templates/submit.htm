@@ -9,38 +9,40 @@
             {{ form.select }}
         </p>
 
-        <p class="projects">
-            {{ form.project_title.label}}<br>
-            {{ form.project_title }}
+        <div id="selections">
+            <p class="projects" id="project">
+                {{ form.project_title.label}}<br>
+                {{ form.project_title }}
 
-            {{ form.project_text.label }}<br>
-            {{ form.project_text }}
+                {{ form.project_text.label }}<br>
+                {{ form.project_text }}
 
-            {{ form.project_tags.label }}<br>
-            {{ form.project_tags }}
-        </p>
+                {{ form.project_tags.label }}<br>
+                {{ form.project_tags }}
+            </p>
 
-        <p class="teamMembers">
-            {{ form.team_name.label }}<br>
-            {{ form.team_name }}<br>
+            <p class="teamMembers" id="team_member" hidden>
+                {{ form.team_name.label }}<br>
+                {{ form.team_name }}<br>
 
-            {{ form.team_member_name.label }}<br>
-            {{ form.team_member_name }}<br>
+                {{ form.team_member_name.label }}<br>
+                {{ form.team_member_name }}<br>
 
-            {{ form.team_member_email.label}}<br>
-            {{ form.team_member_email}}
-        </p>
+                {{ form.team_member_email.label}}<br>
+                {{ form.team_member_email}}
+            </p>
 
-        <p class="executives">
-            {{ form.exec_team.label }}<br>
-            {{ form.exec_team }}<br>
+            <p class="executives" id="executive" hidden>
+                {{ form.exec_team.label }}<br>
+                {{ form.exec_team }}<br>
 
-            {{ form.exec_member_name.label }}<br>
-            {{ form.exec_member_name }}<br>
+                {{ form.exec_member_name.label }}<br>
+                {{ form.exec_member_name }}<br>
 
-            {{ form.exec_member_email.label }}<br>
-            {{ form.exec_member_email }}
-        </p>
+                {{ form.exec_member_email.label }}<br>
+                {{ form.exec_member_email }}
+            </p>
+        </div>
     </form>
 </div>
 {% endblock %}
