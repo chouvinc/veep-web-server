@@ -1,11 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Test</title>
-    <meta charset="utf-8">
-  </head>
-  <body>
-    <h1>{{test.hello}}</h1>
-    <h3>{{test.world}}</h3>
-  </body>
-</html>
+{% extends 'base.htm' %}
+
+{% block content %}
+<div class="content">
+
+    <div class="introduction">
+        <h3>Projects</h3>
+        <p>
+            VEEP partners with the local community to promote engineering growth and leadership! Our projects are designed
+            to be technically challenging, requiring a commitment of 7-10 hours per week. If you are a student please click
+            on one of the projects below to apply; if you are a not-for-profit please click on the "Contact Us" tab or
+            click the link here: <a href="{{url_for('.contact_us')}}">Contact Us</a>
+        </p>
+
+        <p>
+            This year <i>all projects</i> will have a mandatory <a href="{{url_for('.events')}}">
+            Year End Project Showcase</a>. It is our strong belief that students should be rewarded for their hard work,
+            and we have a few events in the pipeline to make the extra effort of creating a presentation for all to
+            see worthwhile. Please keep track of the <a href="{{url_for('.events')}}">Events</a> page for more updates.
+
+        </p>
+    </div>
+
+    <div class="projects">
+        <h4>VEEP Projects</h4>
+        <p>
+            These are the traditional VEEP projects, which require students to be able to take initiative and perform
+            difficult architectural decisions. There will be some guidance through our Technical Project Managers, but
+            ultimately design decisions lie with the student team. Students that apply for traditional VEEP projects
+            typically have extensive experience in the project's field, or have shown lightning fast learning speeds
+            through prior endeavours.
+        </p>
+
+        {% for project in veep_projects %}
+        <p>
+            <div class="project_title">{{project.title}}</div>
+            <div class="project_tags">{{project.tags}}</div>
+            <div class="project_desc">{{project.desc}}</div>
+        </p>
+        {% endfor %}
+
+        <h4>VEEPX Projects</h4>
+        <p>
+            VEEPX is a program that we started in the fall semester of 2017. Realizing that there was a gap for students
+            just starting their engineering career, we produced a program with projects that are a little less technically
+            demanding and a little more well defined. Students applying for these projects have little to no experience
+            in engineering projects -- these projects are their first performance in a professional environment.
+
+            If you have no engineering experience, no worries! We are looking to develop the next generation of engineering
+            students, so these projects will be heavily focused on learning opportunities, rather than project outcomes.
+        </p>
+
+        {% for project in veepx_projects %}
+        <p>
+            <div class="project_title">{{project.title}}</div>
+            <div class="project_tags">{{project.tags}}</div>
+            <div class="project_desc">{{project.desc}}</div>
+        </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

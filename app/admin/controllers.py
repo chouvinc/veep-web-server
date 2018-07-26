@@ -3,6 +3,7 @@ from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, SubmitInfoForm, RegistrationForm
 from app.util.models import User
 from app import db
+from app.logic.submit_info_logic import handle_form_data
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
@@ -44,6 +45,9 @@ def logout():
 def submit():
     if current_user.is_authenticated:
         form = SubmitInfoForm()
+        if form.validate_on_submit():
+            flash(handle_form_data(form))
+            return redirect(url_for('.submit'))
         return render_template('submit.htm', title='Submit Information', form=form)
     else:
         return redirect(url_for('.login'))
