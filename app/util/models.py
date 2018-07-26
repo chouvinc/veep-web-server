@@ -4,6 +4,9 @@ from app import login_manager
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
+# A quick note about __repr__ : this is an optional method to implement -- all it does is make
+# logging database objects pretty (I believe it just prints a reference usually).
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
@@ -27,6 +30,16 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+class Project(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128), index=True, unique=True)
+    tags = db.Column(db.String(128), index=True)
+    description = db.Column(db.String(1024), index=True)
+    is_veep_x = db.Column(db.Boolean, unique=False, default=False)
+
+    def __repr__(self):
+        return '<Project {}>'.format(self.body)
 
 @login_manager.user_loader
 def load_user(id):
