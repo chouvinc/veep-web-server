@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, url_for
-from app.logic import project_logic
+from flask import Blueprint, render_template, url_for, flash
+from app.logic import project_logic, email_logic
 from app.util.string_literals import route_string_to_display_string
+from app.util.form import ContactUsForm
 
 main = Blueprint('main', __name__, template_folder='templates')
 
@@ -22,7 +23,12 @@ def projects():
 
 @main.route('/contact_us')
 def contact_us():
-    return render_template("contact_us.htm")
+    form = ContactUsForm()
+
+    if form.validate_on_submit():
+        # TODO make sure the handler returns what happens
+        flash(email_logic.form_handler(form))
+    return render_template("contact_us.htm", form=form)
 
 @main.route('/events')
 def events():
@@ -37,3 +43,7 @@ def apply(position):
         return render_template("apply.htm", position=position_string)
     else:
         return render_template("apply.htm")
+
+@main.route('/our_team')
+def our_team():
+    return render_template("our_team.htm")

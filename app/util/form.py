@@ -29,6 +29,8 @@ class SubmitInfoForm(FlaskForm):
     exec_member_name = StringField('Member Name', validators=[DataRequired])
     exec_member_email = StringField('Email', validators=[DataRequired])
 
+    submit = SubmitField('Submit Info')
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -46,3 +48,9 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class ContactUsForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    message_text = TextAreaField('Email Body', validators=[DataRequired])
+
+    submit = SubmitField('Submit Email')
