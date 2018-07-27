@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
       <title>Test</title>
-      <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+      <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
+      {% block stylesheets %}
+      {% endblock %}
       <meta charset="utf-8">
   </head>
   <body>
@@ -10,9 +12,9 @@
           <ul>
               <li><a href="{{url_for('main.index')}}">VEEP</a></li>
               <li><a href="{{url_for('main.projects')}}">Projects</a></li>
+              <li><a href="{{url_for('main.contact_us')}}">Contact Us</a></li>
+              <li><a href="{{url_for('main.our_team')}}">Our Team</a></li>
               <!--TODO: add the links for this once its up-->
-              <li><a href="/">Contact Us</a></li>
-              <li><a href="/">Our Team</a></li>
               <li><a href="/">Blog</a></li>
           </ul>
       </div>
@@ -42,6 +44,7 @@
           <div class="category">
               <h4>Apply</h4>
               <ul>
+                  <!--TODO probably should find a more efficient way of doing this (IDK how efficent python string concatenations are done) -- Vincent-->
                   <li><a href="{{url_for('main.apply') + '/project_manager'}}">Project Manager</a></li>
                   <li><a href="{{url_for('main.apply') + '/project_member'}}">Project Member</a></li>
                   <li><a href="{{url_for('main.apply') + '/marketing'}}">Marketing</a></li>

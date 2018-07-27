@@ -1,5 +1,36 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{% endblock %}
+
 {% block content %}
-<h1>Welcome to VEEP</h1>
+<div class="banner">
+    VEEP
+</div>
+<div class="introduction">
+    <h3>What is VEEP?</h3>
+    <p>VEEP stands for Volunteering Engineering Experience Program. We work with not-for-profits to build
+    the next cohort of engineering students! Working with us means you are looking for...</p>
+</div>
+
+<div class="engagement">
+    <h3>Community Engagement</h3>
+    <p>You'd love the chance to make a difference in your local community. You bring a balance of impact and
+    empathy to the volunteering community. But you also want...</p>
+</div>
+
+<div class="learning">
+    <h3>Learning Opportunities</h3>
+    <p>You want to explore engineering across different disciplines -- and learn more about them, in a "doing"
+    context! Classes are amazing for building fundamentals, but now it's time to build off of theory into
+    practice. But you're an engineering hopeful, so you definitely want...</p>
+</div>
+
+<div class="experience">
+    <h3>Experience</h3>
+    <p>If you don't want to branch out, that's fine too! VEEP supports a wide variety of projects so you'll
+    be able to accumulate professional know-how before you enter the workforce. Employers like 4.0's but
+    they love work experience!</p>
+</div>
 {% endblock %}
