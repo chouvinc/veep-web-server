@@ -46,8 +46,8 @@ def submit():
     if current_user.is_authenticated:
         form = SubmitInfoForm()
         if form.validate_on_submit():
-            # TODO make sure the handler returns what happens
-            flash(submit_info_logic.form_handler(form))
+            flash('Submitted!')
+            submit_info_logic.form_handler(form)
             return redirect(url_for('.submit'))
         return render_template('submit.htm', title='Submit Information', form=form)
     else:
