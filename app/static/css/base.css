@@ -1,3 +1,56 @@
 .header {
     width: 100%;
 }
+
+.header ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+.header li {
+    display: inline-block;
+    padding: 10px;
+}
+
+.header a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.footer {
+    width: 100%;
+    background-color: #eeeeee;
+    padding: 0 0 10px 0;
+    bottom: 0;
+    position: absolute;
+    height: 250px;
+}
+
+.footer ul {
+    list-style-type: none;
+}
+
+.footer a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.category {
+    display: inline-block;
+    margin: 10px;
+}
+
+.category a {
+    float: left;
+}
+
+.container {
+    min-height: 100%;
+    width: 75%;
+    margin: auto;
+    position: relative;
+}
+
+.contentWrapper {
+    padding-bottom: 250px;
+}

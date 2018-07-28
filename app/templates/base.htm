@@ -6,8 +6,10 @@
       {% block stylesheets %}
       {% endblock %}
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+    <div class="container">
       <div class="header">
           <ul>
               <li><a href="{{url_for('main.index')}}">VEEP</a></li>
@@ -30,20 +32,22 @@
       {% endif %}
       {% endwith %}
 
-      {% block content %}
-      {% endblock %}
+      <div class="contentWrapper">
+          {% block content %}
+          {% endblock %}
+      </div>
 
       <div class="footer">
           <div class="category">
-              <h4>Social Media</h4>
               <ul>
+                  <h4>Social Media</h4>
                   <li><a href="/">Facebook</a></li>
                   <li><a href="/">Placeholder</a></li>
               </ul>
           </div>
           <div class="category">
-              <h4>Apply</h4>
               <ul>
+                  <h4>Apply</h4>
                   <!--TODO probably should find a more efficient way of doing this (IDK how efficent python string concatenations are done) -- Vincent-->
                   <li><a href="{{url_for('main.apply') + '/project_manager'}}">Project Manager</a></li>
                   <li><a href="{{url_for('main.apply') + '/project_member'}}">Project Member</a></li>
@@ -63,5 +67,6 @@
               crossorigin="anonymous"></script>
       {% block scripts %}
       {% endblock %}
+    </div>
   </body>
 </html>
