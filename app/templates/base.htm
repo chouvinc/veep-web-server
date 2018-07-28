@@ -11,14 +11,14 @@
   </head>
   <body>
     <div class="container">
-      <div class="header">
-          <ul>
-              <li><a href="{{url_for('main.index')}}">VEEP</a></li>
+      <div class="header colorBorder">
+          <ul class="headerItems">
+              <li id="veep"><a href="{{url_for('main.index')}}">VEEP</a></li>
               <li><a href="{{url_for('main.projects')}}">Projects</a></li>
               <li><a href="{{url_for('main.contact_us')}}">Contact Us</a></li>
               <li><a href="{{url_for('main.our_team')}}">Our Team</a></li>
               <!--TODO: add the links for this once its up-->
-              <li><a href="/">Blog</a></li>
+              <li id="blog"><a href="/">Blog</a></li>
           </ul>
       </div>
 
@@ -32,30 +32,45 @@
       {% endif %}
       {% endwith %}
 
+      {% block banner %}
+      {% endblock %}
       <div class="contentWrapper">
           {% block content %}
           {% endblock %}
       </div>
 
       <div class="footer">
-          <div class="category">
-              <ul>
-                  <h4>Social Media</h4>
-                  <li><a href="/">Facebook</a></li>
-                  <li><a href="/">Placeholder</a></li>
-              </ul>
-          </div>
-          <div class="category">
-              <ul>
-                  <h4>Apply</h4>
-                  <!--TODO probably should find a more efficient way of doing this (IDK how efficent python string concatenations are done) -- Vincent-->
-                  <li><a href="{{url_for('main.apply') + '/project_manager'}}">Project Manager</a></li>
-                  <li><a href="{{url_for('main.apply') + '/project_member'}}">Project Member</a></li>
-                  <li><a href="{{url_for('main.apply') + '/marketing'}}">Marketing</a></li>
-                  <li><a href="{{url_for('main.apply') + '/business_development'}}">Business Development</a></li>
-                  <li><a href="{{url_for('main.apply') + '/operations'}}">Operations</a></li>
-                  <li><a href="{{url_for('main.apply') + '/digital_team'}}">Digital Team</a></li>
-              </ul>
+          <div class="categoryWrapper">
+              <div class="category">
+                  <ul>
+                      <h4>Social Media</h4>
+                      <li><a href="/">Facebook</a></li>
+                      <li><a href="/">Placeholder</a></li>
+                  </ul>
+              </div>
+              <div class="category">
+                  <ul>
+                      <h4>Apply</h4>
+                      <!--TODO probably should find a more efficient way of doing this (IDK how efficent python string concatenations are done) -- Vincent-->
+                      <li><a href="{{url_for('main.apply') + '/project_manager'}}">Project Manager</a></li>
+                      <li><a href="{{url_for('main.apply') + '/project_member'}}">Project Member</a></li>
+                      <li><a href="{{url_for('main.apply') + '/marketing'}}">Marketing</a></li>
+                      <li><a href="{{url_for('main.apply') + '/business_development'}}">Business Development</a></li>
+                      <li><a href="{{url_for('main.apply') + '/operations'}}">Operations</a></li>
+                      <li><a href="{{url_for('main.apply') + '/digital_team'}}">Digital Team</a></li>
+                  </ul>
+              </div>
+              <div class="category" id="affiliates">
+                  <ul>
+                      <h4>Affiliated With</h4>
+                      <!--TODO change these to actual orgs-->
+                      <li><a href="/">Organization 1</a></li>
+                      <li><a href="/">Organization 1</a></li>
+                      <li><a href="/">Organization 1</a></li>
+                      <li><a href="/">Organization 1</a></li>
+                      <li><a href="/">Organization 1</a></li>
+                  </ul>
+              </div>
           </div>
        </div>
 
