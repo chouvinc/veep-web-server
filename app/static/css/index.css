@@ -1,4 +1,13 @@
 .banner {
     width: 100%;
-    background-color: yellow;
+    min-height: 200px;
+    background-color: #F5B0CB;
+    padding-top: 200px;
+    text-align: center;
+    color: white;
+}
+
+.banner > span {
+    display: inline-block;
+    vertical-align: middle;
 }

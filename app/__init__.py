@@ -2,7 +2,11 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_mail import Mail
 from config import Config
+
+# initialize other entities
+mail = Mail()
 
 # initialize app
 app = Flask(__name__,
@@ -10,6 +14,7 @@ app = Flask(__name__,
             template_folder='templates')
 
 app.config.from_object(Config)
+mail.init_app(app)
 
 # give it a database (for now using sqlite)
 db = SQLAlchemy(app)

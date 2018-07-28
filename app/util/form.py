@@ -50,7 +50,9 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class ContactUsForm(FlaskForm):
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    message_text = TextAreaField('Email Body', validators=[DataRequired])
+    name = StringField('Name', validators=[DataRequired("Please enter your name.")])
+    email = StringField('Email', validators=[DataRequired("Please enter your email address."), Email("Please enter your email address.")])
+    subject = StringField('Subject', validators=[DataRequired("Please enter a subject.")])
+    message_text = TextAreaField('Email Body', validators=[DataRequired("Please enter a message.")])
 
     submit = SubmitField('Submit Email')
