@@ -5,20 +5,26 @@
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <p class="submit_type">
-            {{ form.select.label }}<br><br>
+            {{ form.select.label }}<br>
             {{ form.select }}
         </p>
 
         <div id="selections">
             <p class="projects" id="project">
-                {{ form.project_title.label}}<br>
-                {{ form.project_title }}
+                <div>
+                    {{ form.project_title.label}}<br>
+                    {{ form.project_title }}
+                </div>
 
-                {{ form.project_text.label }}<br>
-                {{ form.project_text }}
+                <div>
+                    {{ form.project_text.label }}<br>
+                    {{ form.project_text }}
+                </div>
 
-                {{ form.project_tags.label }}<br>
-                {{ form.project_tags }}
+                <div>
+                    {{ form.project_tags.label }}<br>
+                    {{ form.project_tags }}
+                </div>
             </p>
 
             <p class="teamMembers" id="team_member" hidden>
