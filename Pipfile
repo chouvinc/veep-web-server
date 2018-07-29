@@ -9,6 +9,8 @@ flask-login = "*"
 flask-sqlalchemy = "*"
 flask-wtf = "*"
 flask-migrate = "*"
+flask-heroku = "*"
+gunicorn = "*"
 datetime = "*"
 sqlalchemy = "*"
 flask-mail = "*"
@@ -17,3 +19,4 @@ flask-mail = "*"
 
 [requires]
 python_version = "3.6"
+
