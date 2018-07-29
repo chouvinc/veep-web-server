@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask_mail import Mail
 from config import Config
 
@@ -18,7 +17,6 @@ mail.init_app(app)
 
 # give it a database (for now using sqlite)
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 # login manager
 login_manager = LoginManager()
