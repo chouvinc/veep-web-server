@@ -13,7 +13,7 @@ gunicorn = "*"
 datetime = "*"
 sqlalchemy = "*"
 flask-mail = "*"
+flask-script = "*"
 
 [requires]
 python_version = "3.6"
-
