@@ -3,7 +3,7 @@ from flask_mail import Message
 
 
 def form_handler(form):
-    message = Message(form.subject.data, sender='vincechou0311@gmail.com', recipients=['vin.chou@mail.utoronto.ca'])
+    message = Message(form.subject.data, sender='operations@uoftveep.com', recipients=['operations@uoftveep.com'])
     message.body = """
     From: %s <%s>
     %s
