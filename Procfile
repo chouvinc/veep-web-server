@@ -1,1 +1,1 @@
-web: gunicorn gettingstarted.__init__
+web: gunicorn app.__init__
