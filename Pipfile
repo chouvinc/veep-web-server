@@ -14,7 +14,7 @@ datetime = "*"
 sqlalchemy = "*"
 flask-mail = "*"
 flask-script = "*"
-psycopg2 = "*"
+"psycopg2" = "*"
 
 [requires]
 python_version = "3.6"
