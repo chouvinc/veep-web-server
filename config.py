@@ -7,7 +7,7 @@ class Config(object):
         'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # TODO change this to veep mail
-    MAIL_SERVER = "smtp.gmail.com"
+    MAIL_SERVER = "smtp.zoho.com"
     MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USE_TLS = False
