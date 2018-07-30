@@ -49,6 +49,20 @@
                 {{ form.exec_member_email }}
             </p>
 
+            <p class="events" id="event" hidden>
+                {{ form.event_title.label}}<br>
+                {{ form.event_title }}<br>
+
+                {{ form.event_date.label }}<br>
+                {{ form.event_date }}<br>
+
+                {{ form.event_location.label}}<br>
+                {{ form.event_location}}<br>
+
+                {{ form.event_desc.label}}<br>
+                {{ form.event_desc}}
+            </p>
+
             <p>{{ form.submit() }}</p>
         </div>
     </form>

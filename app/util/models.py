@@ -41,6 +41,16 @@ class Project(db.Model):
     def __repr__(self):
         return '<Project {}>'.format(self.body)
 
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(128), index=True, unique=True)
+    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    location = db.Column(db.String(128), index=True)
+    desc = db.Column(db.String(2048), index=True)
+
+    def __repr__(self):
+        return '<Event {}>'.format(self.body)
+
 @login_manager.user_loader
 def load_user(id):
     return User.query.get(int(id))

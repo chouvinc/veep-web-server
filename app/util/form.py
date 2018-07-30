@@ -1,5 +1,8 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, SelectField, TextAreaField
+from wtforms import StringField, PasswordField,\
+    BooleanField, SubmitField,\
+    SelectField, TextAreaField,\
+    DateTimeField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from app.util.models import User
 
@@ -11,7 +14,10 @@ class LoginForm(FlaskForm):
 
 class SubmitInfoForm(FlaskForm):
     select = SelectField('Type',
-                         choices=[('project', 'Project'), ('team_member', 'Team Member'), ('executive', 'Executive')],
+                         choices=[('project', 'Project'),
+                                  ('team_member', 'Team Member'),
+                                  ('executive', 'Executive'),
+                                  ('event', 'Event')],
                          default='Please select a field')
 
     # for select = Project
@@ -28,6 +34,13 @@ class SubmitInfoForm(FlaskForm):
     exec_team = StringField('Exec Team (BD, Ops, Marketing, etc.)', validators=[DataRequired])
     exec_member_name = StringField('Member Name', validators=[DataRequired])
     exec_member_email = StringField('Email', validators=[DataRequired])
+
+    # for select = Event
+    event_title = StringField('Event Title', validators=[DataRequired])
+    event_date = DateTimeField('Event Date', validators=[DataRequired])
+    # TODO possibly use a google maps API here to link directly to maps
+    event_location = StringField('Event Location', validators=[DataRequired])
+    event_desc = TextAreaField('Event Description', validators=[DataRequired])
 
     submit = SubmitField('Submit Info')
 
