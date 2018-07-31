@@ -12,37 +12,39 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
-class SubmitInfoForm(FlaskForm):
-    select = SelectField('Type',
-                         choices=[('project', 'Project'),
-                                  ('team_member', 'Team Member'),
-                                  ('executive', 'Executive'),
-                                  ('event', 'Event')],
-                         default='Please select a field')
-
-    # for select = Project
-    project_title = StringField('Project Title', validators=[DataRequired])
-    project_text = TextAreaField('Project Description', validators=[DataRequired])
+class ProjectForm(FlaskForm):
+    id = 'project'
+    project_title = StringField('Project Title', validators=[DataRequired()])
+    project_text = TextAreaField('Project Description', validators=[DataRequired()])
     project_tags = TextAreaField('Project Tags')
 
-    # for select = Team member
-    team_name = StringField('Team Name', validators=[DataRequired])
-    team_member_name = StringField('Member Name', validators=[DataRequired])
-    team_member_email = StringField('Email', validators=[DataRequired])
+    submit = SubmitField('Submit Project')
 
-    # for select = Executive
-    exec_team = StringField('Exec Team (BD, Ops, Marketing, etc.)', validators=[DataRequired])
-    exec_member_name = StringField('Member Name', validators=[DataRequired])
-    exec_member_email = StringField('Email', validators=[DataRequired])
+class TeamMemberForm(FlaskForm):
+    id = 'team_member'
+    team_name = StringField('Team Name', validators=[DataRequired()])
+    team_member_name = StringField('Member Name', validators=[DataRequired()])
+    team_member_email = StringField('Email', validators=[DataRequired()])
 
-    # for select = Event
-    event_title = StringField('Event Title', validators=[DataRequired])
-    event_date = DateTimeField('Event Date', validators=[DataRequired])
+    submit = SubmitField('Submit Team Member')
+
+class ExecMemberForm(FlaskForm):
+    id = 'executive'
+    exec_team = StringField('Exec Team (BD, Ops, Marketing, etc.)', validators=[DataRequired()])
+    exec_member_name = StringField('Member Name', validators=[DataRequired()])
+    exec_member_email = StringField('Email', validators=[DataRequired()])
+
+    submit = SubmitField('Submit Exec Member')
+
+class EventForm(FlaskForm):
+    id = 'event'
+    event_title = StringField('Event Title', validators=[DataRequired()])
+    event_date = DateTimeField('Event Date', validators=[DataRequired()])
     # TODO possibly use a google maps API here to link directly to maps
-    event_location = StringField('Event Location', validators=[DataRequired])
-    event_desc = TextAreaField('Event Description', validators=[DataRequired])
+    event_location = StringField('Event Location', validators=[DataRequired()])
+    event_desc = TextAreaField('Event Description', validators=[DataRequired()])
 
-    submit = SubmitField('Submit Info')
+    submit = SubmitField('Submit EventForm')
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

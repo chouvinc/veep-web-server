@@ -33,11 +33,9 @@ from app.main.controllers import main
 app.register_blueprint(main, url_prefix='/')
 app.register_blueprint(admin, url_prefix='/admin')
 
-from app.util import models
-
 # shell stuff to make development easier
 from app import app, db
-from app.util.models import User, Post
+from app.util.models import User, Post, Project
 @app.shell_context_processor
 def make_shell_context():
-    return {"db": db, "User": User, "Post": Post}
+    return {"db": db, "User": User, "Project": Project}

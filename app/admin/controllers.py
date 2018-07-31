@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
-from app.util.form import LoginForm, SubmitInfoForm, RegistrationForm
+from app.util.form import LoginForm, RegistrationForm
 from app.util.models import User
 from app import db
 from app.logic import submit_info_logic
@@ -37,21 +37,19 @@ def logout():
     logout_user()
     return redirect(url_for('.index'))
 
-# TODO, the login template should have a form with the following elements:
-# 1) A select box to choose which table to write to (projects, execs, students)
-# 2) Load the corresponding form (for projects we'd need title, tags, preview snippet, and full description)
-# 3) Miscellaneous notes that might be added alongside a project (if there are special circumstances)
-@admin.route('/submit', methods=['GET', 'POST'])
+@admin.route('/submit')
 def submit():
-    if current_user.is_authenticated:
-        form = SubmitInfoForm()
-        if form.validate_on_submit():
-            flash('Submitted!')
-            submit_info_logic.form_handler(form)
-            return redirect(url_for('.submit'))
-        return render_template('submit.htm', title='Submit Information', form=form)
-    else:
+    if not current_user.is_authenticated:
         return redirect(url_for('.login'))
+    return render_template('submit.htm', title='Submit', init_page=True)
+
+@admin.route('/submit/<type>', methods=['GET', 'POST'])
+def submit_type(type):
+    if not current_user.is_authenticated:
+        return redirect(url_for('.login'))
+    form = submit_info_logic.get_fields_for(type)
+
+    return render_template('submit.htm', title='Submit', type=form)
 
 # Use this endpoint to add new users to the admin portal
 @admin.route('/register', methods=['GET', 'POST'])

@@ -2,15 +2,21 @@
 
 {% block content %}
 <div class="submitForm">
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p class="submit_type">
-            {{ form.select.label }}<br>
-            {{ form.select }}
-        </p>
+    {% if init_page %}
+    <ul>
+        <li><a href="{{ url_for('.submit_type', type='project') }}">Submit Project</a></li>
+        <li><a href="{{ url_for('.submit_type', type='team_member') }}">Submit Team Member</a></li>
+        <li><a href="{{ url_for('.submit_type', type='executive') }}">Submit Executive</a></li>
+        <li><a href="{{ url_for('.submit_type', type='event') }}">Submit Event</a></li>
+    </ul>
+    {% endif %}
 
+    {% if form %}
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
         <div id="selections">
-            <p class="projects" id="project">
+            {% if formtype['projects'] %}
+            <div class="projects" id="project">
                 <div>
                     {{ form.project_title.label}}<br>
                     {{ form.project_title }}
@@ -25,9 +31,9 @@
                     {{ form.project_tags.label }}<br>
                     {{ form.project_tags }}
                 </div>
-            </p>
-
-            <p class="teamMembers" id="team_member" hidden>
+            </div>
+            {% elif formtype['team_member'] %}
+            <div class="teamMembers" id="team_member" hidden>
                 {{ form.team_name.label }}<br>
                 {{ form.team_name }}<br>
 
@@ -36,9 +42,9 @@
 
                 {{ form.team_member_email.label}}<br>
                 {{ form.team_member_email}}
-            </p>
-
-            <p class="executives" id="executive" hidden>
+            </div>
+            {% elif formtype['executive'] %}
+            <div class="executives" id="executive" hidden>
                 {{ form.exec_team.label }}<br>
                 {{ form.exec_team }}<br>
 
@@ -47,9 +53,9 @@
 
                 {{ form.exec_member_email.label }}<br>
                 {{ form.exec_member_email }}
-            </p>
-
-            <p class="events" id="event" hidden>
+            </div>
+            {% elif formtype['event'] %}
+            <div class="events" id="event" hidden>
                 {{ form.event_title.label}}<br>
                 {{ form.event_title }}<br>
 
@@ -61,14 +67,11 @@
 
                 {{ form.event_desc.label}}<br>
                 {{ form.event_desc}}
-            </p>
-
-            <p>{{ form.submit() }}</p>
+            </div>
+            {% endif %}
         </div>
+        {{ form.submit() }}
     </form>
+    {% endif %}
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script src="{{url_for('static', filename='scripts/submit.js')}}"></script>
 {% endblock %}

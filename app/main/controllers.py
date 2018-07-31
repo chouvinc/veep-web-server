@@ -34,6 +34,9 @@ def contact_us():
             flash('Emailed!')
             email_logic.form_handler(form)
             return render_template("contact_us.htm", form=form)
+        else:
+            flash('Email failed...')
+            return render_template("contact_us.htm", form=form)
 
 @main.route('/events')
 def events():
@@ -41,15 +44,14 @@ def events():
 
 
 @main.route('/apply')
-@main.route('/apply/<position>')
-def apply(position):
-    if position:
-        # TODO do something w/ the application
-        position_string = route_string_to_display_string(position)
-        return render_template("apply.htm", position=position_string)
-    else:
-        return render_template("apply.htm")
+def apply():
+    return render_template("apply.htm")
 
+@main.route('/apply/<position>')
+def apply_position(position):
+    # TODO do something w/ the application
+    position_string = route_string_to_display_string(position)
+    return render_template("apply.htm", position=position_string)
 
 @main.route('/our_team')
 def our_team():
