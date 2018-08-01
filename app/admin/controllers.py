@@ -52,10 +52,8 @@ def submit_type(type):
 
     if form.validate_on_submit():
         submit_info_logic.form_handler(form)
-        flash('Ay gj')
         return redirect(url_for('.submit'))
 
-    print(form.errors)
     return render_template('submit.htm', title='Submit', form=form)
 
 

@@ -38,9 +38,6 @@ class Project(db.Model):
     description = db.Column(db.String(16384), index=True)
     is_veep_x = db.Column(db.Boolean, unique=False, default=False)
 
-    def __repr__(self):
-        return '<Project {}>'.format(self.body)
-
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), index=True, unique=True)

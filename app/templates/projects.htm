@@ -1,5 +1,9 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/project.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="content">
     <div class="introduction contentEntry">
@@ -30,11 +34,11 @@
         </p>
 
         {% for project in veep_projects %}
-        <p>
-            <div class="project_title">{{project.title}}</div>
+        <div class="project_title">{{project.title}}</div>
+        <div class="projectItem">
             <div class="project_tags">{{project.tags}}</div>
             <div class="project_desc">{{project.description}}</div>
-        </p>
+        </div>
         {% endfor %}
 
         <h4>VEEP-X Projects</h4>
@@ -49,11 +53,11 @@
         </p>
 
         {% for project in veepx_projects %}
-        <p>
-            <div class="project_title">{{project.title}}</div>
+        <div class="project_title">{{project.title}}</div>
+        <div class="projectItem">
             <div class="project_tags">{{project.tags}}</div>
             <div class="project_desc">{{project.desc}}</div>
-        </p>
+        </div>
         {% endfor %}
     </div>
 </div>

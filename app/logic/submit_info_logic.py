@@ -13,10 +13,11 @@ def form_handler(form):
 
 def handle_project(form):
     # TODO make form for isVeepX
+    print(form.project_veepx)
     project = Project(title=form.project_title.data,
                       tags=form.project_tags.data,
                       description=form.project_text.data,
-                      is_veep_x=form.project_veepx == 'yes')
+                      is_veep_x=form.project_veepx.data == 'yes')
 
     db.session.add(project)
     db.session.commit()

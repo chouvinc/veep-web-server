@@ -3,7 +3,8 @@ from sqlalchemy.exc import OperationalError
 
 def get_veep_projects():
     try:
-        return Project.query.filter_by(is_veep_x=False).all()
+        projects = Project.query.filter_by(is_veep_x=False).all()
+        return projects
     except OperationalError:
         return []
 
@@ -11,6 +12,7 @@ def get_veep_projects():
 
 def get_veepx_projects():
     try:
-        return Project.query.filter_by(is_veep_x=True).all()
+        projects = Project.query.filter_by(is_veep_x=True).all()
+        return projects
     except OperationalError:
         return []
