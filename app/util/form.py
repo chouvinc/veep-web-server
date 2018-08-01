@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField,\
     BooleanField, SubmitField,\
     SelectField, TextAreaField,\
-    DateTimeField
+    DateTimeField, RadioField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from app.util.models import User
 
@@ -17,6 +17,9 @@ class ProjectForm(FlaskForm):
     project_title = StringField('Project Title', validators=[DataRequired()])
     project_text = TextAreaField('Project Description', validators=[DataRequired()])
     project_tags = TextAreaField('Project Tags')
+    project_veepx = RadioField('VEEPX?',
+                               choices=[('yes', 'Yes'), ('no', 'No')],
+                               default='yes')
 
     submit = SubmitField('Submit Project')
 
@@ -44,7 +47,7 @@ class EventForm(FlaskForm):
     event_location = StringField('Event Location', validators=[DataRequired()])
     event_desc = TextAreaField('Event Description', validators=[DataRequired()])
 
-    submit = SubmitField('Submit EventForm')
+    submit = SubmitField('Submit Event')
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])

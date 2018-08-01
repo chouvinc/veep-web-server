@@ -47,9 +47,17 @@ def submit():
 def submit_type(type):
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
+
     form = submit_info_logic.get_fields_for(type)
 
-    return render_template('submit.htm', title='Submit', type=form)
+    if form.validate_on_submit():
+        submit_info_logic.form_handler(form)
+        flash('Ay gj')
+        return redirect(url_for('.submit'))
+
+    print(form.errors)
+    return render_template('submit.htm', title='Submit', form=form)
+
 
 # Use this endpoint to add new users to the admin portal
 @admin.route('/register', methods=['GET', 'POST'])

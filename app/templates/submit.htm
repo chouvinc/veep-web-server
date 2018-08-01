@@ -15,58 +15,144 @@
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <div id="selections">
-            {% if formtype['projects'] %}
+            {% if form.id == 'project' %}
             <div class="projects" id="project">
                 <div>
                     {{ form.project_title.label}}<br>
                     {{ form.project_title }}
                 </div>
 
+                {% for error in form.project_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
                 <div>
                     {{ form.project_text.label }}<br>
                     {{ form.project_text }}
                 </div>
 
+                {% for error in form.project_text.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
                 <div>
                     {{ form.project_tags.label }}<br>
                     {{ form.project_tags }}
                 </div>
+
+                {% for error in form.project_tags.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.project_veepx.label }}
+                    {% for field in form.project_veepx %}
+                    <tr>
+                        <td>{{ field }}</td>
+                        <td>{{ field.label }}</td>
+                    </tr>
+                    {% endfor %}
+                </div>
+
+                {% for error in form.project_tags.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
-            {% elif formtype['team_member'] %}
-            <div class="teamMembers" id="team_member" hidden>
-                {{ form.team_name.label }}<br>
-                {{ form.team_name }}<br>
+            {% elif form.id == 'team_member' %}
+            <div class="teamMembers" id="team_member">
+                <div>
+                    {{ form.team_name.label }}<br>
+                    {{ form.team_name }}<br>
+                </div>
 
-                {{ form.team_member_name.label }}<br>
-                {{ form.team_member_name }}<br>
+                {% for error in form.team_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
-                {{ form.team_member_email.label}}<br>
-                {{ form.team_member_email}}
+                <div>
+                    {{ form.team_member_name.label }}<br>
+                    {{ form.team_member_name }}<br>
+                </div>
+
+                {% for error in form.team_member_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.team_member_email.label}}<br>
+                    {{ form.team_member_email}}
+                </div>
+
+                {% for error in form.team_member_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
-            {% elif formtype['executive'] %}
-            <div class="executives" id="executive" hidden>
-                {{ form.exec_team.label }}<br>
-                {{ form.exec_team }}<br>
+            {% elif form.id == 'executive' %}
+            <div class="executives" id="executive">
+                <div>
+                    {{ form.exec_team.label }}<br>
+                    {{ form.exec_team }}<br>
+                </div>
 
-                {{ form.exec_member_name.label }}<br>
-                {{ form.exec_member_name }}<br>
+                {% for error in form.exec_team.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
-                {{ form.exec_member_email.label }}<br>
-                {{ form.exec_member_email }}
+                <div>
+                    {{ form.exec_member_name.label }}<br>
+                    {{ form.exec_member_name }}<br>
+                </div>
+
+                {% for error in form.exec_member_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.exec_member_email.label }}<br>
+                    {{ form.exec_member_email }}
+                </div>
+
+                {% for error in form.exec_member_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
-            {% elif formtype['event'] %}
-            <div class="events" id="event" hidden>
-                {{ form.event_title.label}}<br>
-                {{ form.event_title }}<br>
+            {% elif form.id == 'event' %}
+            <div class="events" id="event">
+                <div>
+                    {{ form.event_title.label}}<br>
+                    {{ form.event_title }}<br>
+                </div>
 
-                {{ form.event_date.label }}<br>
-                {{ form.event_date }}<br>
+                {% for error in form.event_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
-                {{ form.event_location.label}}<br>
-                {{ form.event_location}}<br>
+                <div>
+                    {{ form.event_date.label }}<br>
+                    {{ form.event_date }}<br>
+                </div>
 
-                {{ form.event_desc.label}}<br>
-                {{ form.event_desc}}
+                {% for error in form.event_date.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.event_location.label}}<br>
+                    {{ form.event_location}}<br>
+                </div>
+
+                {% for error in form.event_location.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.event_desc.label}}<br>
+                    {{ form.event_desc}}
+                </div>
+
+                {% for error in form.event_desc.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
             {% endif %}
         </div>

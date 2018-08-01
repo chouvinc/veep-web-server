@@ -1,4 +1,4 @@
-from flask import flash
+from flask import flash, request
 from app.util.models import Project
 from app import db
 from app.util.form import ProjectForm, TeamMemberForm, ExecMemberForm, EventForm
@@ -15,7 +15,9 @@ def handle_project(form):
     # TODO make form for isVeepX
     project = Project(title=form.project_title.data,
                       tags=form.project_tags.data,
-                      description=form.project_desc.data)
+                      description=form.project_text.data,
+                      is_veep_x=form.project_veepx == 'yes')
+
     db.session.add(project)
     db.session.commit()
     flash('Submitted Project!')
@@ -31,8 +33,8 @@ def handle_event(form):
 
 def get_fields_for(formtype):
     return {
-        'project': ProjectForm(),
-        'team_member': TeamMemberForm(),
-        'executive': ExecMemberForm(),
-        'event': EventForm()
+        'project': ProjectForm(request.form),
+        'team_member': TeamMemberForm(request.form),
+        'executive': ExecMemberForm(request.form),
+        'event': EventForm(request.form)
     }[formtype]
