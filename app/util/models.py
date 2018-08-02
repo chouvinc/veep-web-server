@@ -31,12 +31,22 @@ class Post(db.Model):
     def __repr__(self):
         return '<Post {}>'.format(self.body)
 
+class Member(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(128), index=True)
+    team = db.Column(db.String(128), index=True)
+    email = db.Column(db.String(120), index=True, unique=True)
+    # TODO: run the url through a compressor if the link is very long
+    photo_url = db.Column(db.String(120), unique=True, default='n/a')
+    role = db.Column(db.String(120), index=True)
+    is_exectuive = db.Column(db.Boolean, index=True, default=False)
+
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(128), index=True, unique=True)
     tags = db.Column(db.String(128), index=True)
     description = db.Column(db.String(16384), index=True)
-    is_veep_x = db.Column(db.Boolean, unique=False, default=False)
+    is_veep_x = db.Column(db.Boolean, default=False)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
