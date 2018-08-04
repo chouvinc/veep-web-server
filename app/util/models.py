@@ -39,7 +39,8 @@ class Member(db.Model):
     # TODO: run the url through a compressor if the link is very long
     photo_url = db.Column(db.String(120), unique=True, default='n/a')
     role = db.Column(db.String(120), index=True)
-    is_exectuive = db.Column(db.Boolean, index=True, default=False)
+    is_executive = db.Column(db.Boolean, index=True, default=False)
+    username = db.Column(db.String(120), index=True, unique=True)
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)

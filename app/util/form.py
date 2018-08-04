@@ -37,6 +37,7 @@ class ExecMemberForm(FlaskForm):
     exec_team = StringField('Exec Team (BD, Ops, Marketing, etc.)', validators=[DataRequired()])
     exec_member_name = StringField('Member Name', validators=[DataRequired()])
     exec_member_email = StringField('Email', validators=[DataRequired()])
+    exec_username = StringField('Username', validators=[DataRequired()])
     # TODO add selectField for role
 
     submit = SubmitField('Submit Exec Member')

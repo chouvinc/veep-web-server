@@ -1,7 +1,9 @@
 from flask import flash, request
-from app.util.models import Project, Member
+from app.util.models import Project, Member, User
 from app import db
 from app.util.form import ProjectForm, TeamMemberForm, ExecMemberForm, EventForm
+from app.logic import email_logic
+from config import Config
 
 def form_handler(form):
     return {
@@ -37,12 +39,19 @@ def handle_team_member(form):
 
 def handle_executive(form):
     executive = Member(
-        name=form.team_member_name.data,
-        team=form.team_name.data,
-        email=form.team_member_email.data,
+        name=form.exec_member_name.data,
+        team=form.exec_team.data,
+        email=form.exec_member_email.data,
         role=form.role.data,
-        is_exec=True
+        is_executive=True,
+        username=form.exec_username.data
     )
+
+    # TODO set it so that adding an exec generates a temporary URL that'll let them set their password
+    #user = User(username=form.exec_username.data, email=form.exec_member_email.data)
+    #user.set_password(Config.TEMP_PASSWORD)
+
+    #email_logic.send_set_password_email(user.email)
 
     db.session.add(executive)
     db.session.commit()

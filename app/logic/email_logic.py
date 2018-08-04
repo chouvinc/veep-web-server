@@ -10,3 +10,5 @@ def form_handler(form):
     """ % (form.name.data, form.email.data, form.message_text.data)
     mail.send(message)
 
+def send_set_password_email(email):
+    pass
