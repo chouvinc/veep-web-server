@@ -53,6 +53,10 @@
     </span>
 
     <div id="roleTypes" class="contentEntry">
+
+        <!--TODO: Should maybe pipe this html to a data store somewhere so it doesn't clutter this file
+    TODO: (could possibly also generate this using json that we store in Postgres) -->
+
         <div id="team_member" class="contentBody">
             <p>
                 Team members are the bread and butter of VEEP. We depend on
@@ -61,7 +65,7 @@
                 Not-for-Profit clients and Project Managers along the way.
             </p>
 
-            <p>Your timeline will look a little something like this (double the time length for Weeks 3~10) :</p>
+            <p>Your timeline will look a little something like this (double the time length for Weeks 3~10 for year-long projects) :</p>
 
             <ul class="expanded">
                 <li>
@@ -103,8 +107,21 @@
                 </li>
             </ul>
         </div>
-        <div id="project_manager" class="contentBody" hidden>B</div>
+
+        <div id="project_manager" class="contentBody" hidden>
+            <p>
+                Project Managers are for students looking to improve their leadership and long-term analysis abilities.
+                We would like to invite anyone with previous <span class="emphasize">Industry or Research</span> experience
+                to come and volunteer at VEEP.
+            </p>
+
+            <p>
+                We believe that projects are
+            </p>
+        </div>
+
         <div id="executive" class="contentBody" hidden>C</div>
+
         <div id="nfp" class="contentBody" hidden>D</div>
     </div>
 </div>
