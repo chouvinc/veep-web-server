@@ -156,3 +156,12 @@ input {
     font-size: 0.8em;
     font-weight: 600;
 }
+
+.emphasize {
+    color: #9893DA;
+    font-weight: 600;
+}
+
+.expanded > li {
+    padding-top: 50px;
+}

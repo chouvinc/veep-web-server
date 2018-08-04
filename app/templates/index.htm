@@ -13,13 +13,13 @@
 {% block content %}
 <div class="introduction contentEntry">
     <h3>What is VEEP?</h3>
-    <p class="contentBody">VEEP stands for Volunteering Engineering Experience Program. We work with not-for-profits to build
+    <p class="contentBody">VEEP stands for <span class="emphasize">Volunteering Engineering Experience Program</span>. We work with not-for-profits to build
     the next cohort of engineering students! Working with us means you are looking for...</p>
 </div>
 
 <div class="engagement contentEntry">
     <h3>Community Engagement</h3>
-    <p class="contentBody">You'd love the chance to make a difference in your local community. You bring a balance of impact and
+    <p class="contentBody">You'd love the chance to make a difference in your local <span class="emphasize">community</span>. You bring a balance of impact and
     empathy to the volunteering community. But you also want...</p>
 </div>
 
@@ -27,14 +27,14 @@
     <h3>Learning Opportunities</h3>
     <p class="contentBody">You want to explore engineering across different disciplines -- and learn more about them, in a "doing"
     context! Classes are amazing for building fundamentals, but now it's time to build off of theory into
-    practice. But you're an engineering hopeful, so you definitely want...</p>
+    <span class="emphasize">practice</span>. But you're an engineering hopeful, so you definitely want...</p>
 </div>
 
 <div class="experience contentEntry">
     <h3>Experience</h3>
     <p class="contentBody">If you don't want to branch out, that's fine too! VEEP supports a wide variety of projects so you'll
     be able to accumulate professional know-how before you enter the workforce. Employers like 4.0's but
-    they <i>love</i> work experience!</p>
+    they <i>love</i> <span class="emphasize">work experience</span>!</p>
 </div>
 
 <div class="howItWorks">
@@ -52,11 +52,60 @@
         </select>
     </span>
 
-    <div id="roleTypes">
-        <p id="team_member" class="contentBody">A</p>
-        <p id="project_manager" class="contentBody" hidden>B</p>
-        <p id="executive" class="contentBody" hidden>C</p>
-        <p id="nfp" class="contentBody" hidden>D</p>
+    <div id="roleTypes" class="contentEntry">
+        <div id="team_member" class="contentBody">
+            <p>
+                Team members are the bread and butter of VEEP. We depend on
+                <span class="emphasize">You</span> to make up our engineering teams! As a student you will be expected to
+                contribute towards a project for either 1 or 2 semesters, keeping track of progress and communicating with your
+                Not-for-Profit clients and Project Managers along the way.
+            </p>
+
+            <p>Your timeline will look a little something like this (double the time length for Weeks 3~10) :</p>
+
+            <ul class="expanded">
+                <li>
+                    Week 1: Meet with your team, Project Manager, and Not-for-Profit. Develop preliminary
+                    project requirements and discuss between your team which features build into the Minimal Viable
+                    Product (MVP) that your client can accept.
+                </li>
+                <li>
+                    Week 2~3: Revise, plan, and begin executing your project requirements. Your Project Manager
+                    will outline what we call a <span class="emphasize">Rolling Schedule</span>, and how they
+                    plan to keep development fast-paced and continuous throughout the school year.
+                </li>
+                <li>
+                    Week 4~7: Implement the MVP that you defined in the earlier weeks! We don't expect you to
+                    completely finish all aspects of the project! Many of our projects are quite large in scope and
+                    often have additional features to work towards. We understand that there are other commitments
+                    during the school year which can impact your availability to work on your VEEP project. However,
+                    it is expected that you stay <span class="emphasize">Accountable</span> and plan ahead. VEEP will
+                    treat lack of communication as a sign that you no longer wish to participate and you will no longer
+                    be able to work on your project or sign-up for other VEEP opportunities in the future.
+                </li>
+                <li>
+                    Week 8~9: Clean-up and polish your MVP. Did you do a poor job documenting the process to
+                    meet deadlines? Use this 2-week period to fix any minor issues that were in the prototype's
+                    design. If you wouldn't buy your own project as a product or service then it is not polished enough!
+                </li>
+                <li>
+                    Week 10~12: Work towards those additional features! Congratulations! At this point you already have
+                    a fully-functional and robust product. If you wanted to end here you technically could, but we
+                    really encourage students to further extend their projects to meet the stretch goals designed for
+                    these features.
+                </li>
+                <li>
+                    Week 13~14: Assemble your documentation and prepare for the <span class="emphasize"><a href="{{url_for('.events')}}">
+                    Year End Project Showcase</a></span>. This is your chance to show Not-for-Profits that you are good
+                    enough for professional work! The Year End Project Showcase is a new initiative we began to show
+                    off VEEP's technical rigour and creativity. Even if your project isn't finished at this point,
+                    we'd still like you to present your engineering processes and your approaches to solving problems!
+                </li>
+            </ul>
+        </div>
+        <div id="project_manager" class="contentBody" hidden>B</div>
+        <div id="executive" class="contentBody" hidden>C</div>
+        <div id="nfp" class="contentBody" hidden>D</div>
     </div>
 </div>
 {% endblock %}

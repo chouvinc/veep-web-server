@@ -6,7 +6,8 @@ $('#imRole').change((e) => {
 
 let toggleEverythingBut = (but, toggleable) => {
     let selectionDiv = $('#' + toggleable);
-    selectionDiv.children('p').each((index, val) => {
+    console.log(selectionDiv)
+    selectionDiv.children('div').each((index, val) => {
         let childEl = $(val);
         console.log(childEl)
         if (childEl.attr('id') !== but) {
