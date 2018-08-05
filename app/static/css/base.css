@@ -37,6 +37,11 @@
 .footer a {
     text-decoration: none;
     text-align: center;
+    color: #5c5672;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
 
 .category {
@@ -163,5 +168,11 @@ input {
 }
 
 .expanded > li {
-    padding-top: 50px;
+    padding-top: 25px;
+    margin-top: 50px;
+}
+
+.expanded {
+    border-left: 3px solid #9893DA;
+    border-radius: 5px;
 }
