@@ -1,15 +1,20 @@
 .banner {
     width: 100%;
     min-height: 250px;
-    background-color: #F5B0CB;
+    background: url("../images/logo.png") no-repeat #9893DA 0px 75px;
+    background-size: contain;
     padding-top: 250px;
     text-align: center;
     color: white;
+    font-size: 2em;
 }
 
-.banner > span {
-    display: inline-block;
+.banner > div {
     vertical-align: middle;
+}
+
+.banner h2 {
+    margin-top: 0;
 }
 
 .howItWorks {
