@@ -3,6 +3,7 @@
     background-color: #fff;
     padding: 0 10px;
     position: fixed;
+    font-size: 0.8em;
 }
 
 .header ul {
@@ -96,6 +97,11 @@ textarea {
     margin: 0;
     position: relative;
     width: 100%;
+}
+
+hr {
+    width: 75%;
+    margin: 50px auto;
 }
 
 /* id's */

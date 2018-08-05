@@ -1,5 +1,5 @@
 from flask import flash, request
-from app.util.models import Project, Member, User
+from app.util.models import Project, Member, Event
 from app import db
 from app.util.form import ProjectForm, TeamMemberForm, ExecMemberForm, EventForm
 from app.logic import email_logic
@@ -58,7 +58,16 @@ def handle_executive(form):
     flash('Submitted Executive!')
 
 def handle_event(form):
-    flash('You handled an event')
+    event = Event(
+        title=form.event_title.data,
+        date=form.event_date.data,
+        location=form.event_location.data,
+        desc=form.event_desc.data
+    )
+
+    db.session.add(event)
+    db.session.commit()
+    flash('Submitted Event!')
 
 def get_fields_for(formtype):
     return {

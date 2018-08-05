@@ -34,10 +34,12 @@
         </p>
 
         {% for project in veep_projects %}
-        <div class="project_title">{{project.title}}</div>
-        <div class="projectItem">
-            <div class="project_tags">{{project.tags}}</div>
-            <div class="project_desc">{{project.description}}</div>
+        <div class="projectContainer">
+            <div class="project_title">Long project title {{project.title}}</div>
+            <div class="projectItem">
+                <div class="project_desc contentBody">{{project.description}}</div>
+                <div class="project_tags">Tags: {{project.tags}}</div>
+            </div>
         </div>
         {% endfor %}
 
@@ -55,8 +57,8 @@
         {% for project in veepx_projects %}
         <div class="project_title">{{project.title}}</div>
         <div class="projectItem">
-            <div class="project_tags">{{project.tags}}</div>
-            <div class="project_desc">{{project.desc}}</div>
+            <div class="project_desc contentBody">{{project.desc}}</div>
+            <div class="project_tags">Tags: {{project.tags}}</div>
         </div>
         {% endfor %}
     </div>

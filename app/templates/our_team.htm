@@ -1,5 +1,9 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/our_team.css') }}">
+{% endblock %}
+
 {% block content %}
 <h2>Our Team</h2>
 {% endblock %}
