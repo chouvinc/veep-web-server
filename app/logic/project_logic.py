@@ -1,5 +1,7 @@
 from app.util.models import Project
 from sqlalchemy.exc import OperationalError
+from flask import flash
+from app import db
 
 def get_veep_projects():
     try:
@@ -16,3 +18,27 @@ def get_veepx_projects():
         return projects
     except OperationalError:
         return []
+
+
+def delete_project_by_id(id):
+    try:
+        project = Project.query.filter_by(id=id).first()
+        db.session.delete(project)
+        db.session.commit()
+
+        flash('Project deleted!')
+    except OperationalError:
+        flash('Delete failed!')
+        return
+
+def delete_projects_by_ids(ids):
+    try:
+        for id in ids:
+            project = Project.query.filter_by(id=id).first()
+            db.session.delete(project)
+            db.session.commit()
+
+            flash('Project deleted!')
+    except OperationalError:
+        flash('Delete failed!')
+        return

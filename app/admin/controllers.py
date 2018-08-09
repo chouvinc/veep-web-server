@@ -1,9 +1,9 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, RegistrationForm
-from app.util.models import User
+from app.util.models import User, Project
 from app import db
-from app.logic import submit_info_logic
+from app.logic import submit_info_logic, project_logic
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
@@ -56,6 +56,26 @@ def submit_type(type):
 
     return render_template('submit.htm', title='Submit', form=form)
 
+@admin.route('/delete')
+def delete():
+    if not current_user.is_authenticated:
+        return redirect(url_for('.login'))
+    return render_template('delete.htm')
+
+@admin.route('/delete/<type>', methods=['GET', 'POST'])
+def delete_type(type):
+    if not current_user.is_authenticated:
+        return redirect(url_for('.login'))
+
+    veep_projects = project_logic.get_veep_projects()
+    veepx_projects = project_logic.get_veepx_projects()
+
+    return render_template('delete_projects.htm',
+                           title='Delete',
+                           veep_projects=veep_projects,
+                           veepx_projects=veepx_projects,
+                           type=type
+                           )
 
 # Use this endpoint to add new users to the admin portal
 @admin.route('/register', methods=['GET', 'POST'])

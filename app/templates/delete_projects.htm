@@ -1,0 +1,42 @@
+{% extends 'base.htm' %}
+
+{% block content %}
+
+{% if type == 'project' %}
+<div class="veepProjectsDelete">
+    <h3>Current VEEP Projects</h3>
+    {% for project in veep_projects %}
+    <button id="{{project.id}}" class="deleteProject">X</button>
+    <div class="projectContainer">
+        <div class="project_title">{{project.title}}</div>
+        <div class="projectItem">
+            <div class="project_desc contentBody">{{project.description}}</div>
+            <div class="project_tags">Tags: {{project.tags}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div class="veepXProjectsDelete">
+    <h3>Current VEEPX Projects</h3>
+    {% for project in veepx_projects %}
+    <button id="{{project.id}}"  class="deleteProject">X</button>
+    <div class="projectContainer">
+        <div class="project_title">{{project.title}}</div>
+        <div class="projectItem">
+            <div class="project_desc contentBody">{{project.description}}</div>
+            <div class="project_tags">Tags: {{project.tags}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+<div class="submitDeleteWrapper">
+    <input type="submit" class="submitDelete"></input>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/delete.js') }}"></script>
+{% endblock %}
