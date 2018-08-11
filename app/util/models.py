@@ -44,14 +44,14 @@ class Member(db.Model):
 
 class Project(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), index=True, unique=True)
+    title = db.Column(db.String(128), index=True)
     tags = db.Column(db.String(128), index=True)
     description = db.Column(db.String(16384), index=True)
     is_veep_x = db.Column(db.Boolean, default=False)
 
 class Event(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(128), index=True, unique=True)
+    title = db.Column(db.String(128), index=True)
     date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     location = db.Column(db.String(128), index=True)
     desc = db.Column(db.String(2048), index=True)
