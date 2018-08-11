@@ -8,7 +8,7 @@ def populate_objects_by_type(type):
     elif type == 'veepx_project':
         projects = project_logic.get_veepx_projects()
         return handle_mappings('project', projects)
-    elif type == 'executives':
+    elif type == 'executive':
         members = member_logic.get_all_exec_members()
         return handle_mappings('member', members)
     elif type == 'team_member':
@@ -23,10 +23,10 @@ def handle_mappings(key, objects):
 
     for object in objects:
         mapped_object = {
-            'project': viewmodel_mapper.project_model_to_projectviewmodel(object),
-            'member': viewmodel_mapper.member_model_to_memberviewmodel(object),
-            'event': viewmodel_mapper.event_model_to_eventviewmodel(object)
-        }[key]
+            'project': viewmodel_mapper.project_model_to_projectviewmodel,
+            'member': viewmodel_mapper.member_model_to_memberviewmodel,
+            'event': viewmodel_mapper.event_model_to_eventviewmodel
+        }[key](object)
 
         mapped_objects.append(mapped_object)
     return mapped_objects

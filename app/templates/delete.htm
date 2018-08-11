@@ -1,24 +1,41 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/delete.css') }}">
+{% endblock %}
+
 {% block content %}
 
-<div class="deleteObject">
-    <h3>Current VEEP Projects</h3>
-    {% for object in delete_objects %}
-    <button id="{{object.id}}" class="deleteProject">X</button>
-    <div class="objectContainer">
-        <div class="objectTitle">{{object.title}}</div>
-        <div class="objectItem">
-            <div class="objectBody contentBody">{{object.body}}</div>
+{% if init_page %}
+    <ul>
+        <li><a href="{{ url_for('.delete_type', type='veep_project') }}">Delete VEEP Project</a></li>
+        <li><a href="{{ url_for('.delete_type', type='veepx_project') }}">Delete VEEP-X Project</a></li>
+        <li><a href="{{ url_for('.delete_type', type='executive') }}">Delete Executive</a></li>
+        <li><a href="{{ url_for('.delete_type', type='team_member') }}">Delete Team Member</a></li>
+        <li><a href="{{ url_for('.delete_type', type='event') }}">Delete Event</a></li>
+    </ul>
+
+{% else %}
+    <div class="deleteObject">
+        <h3>Current {{ typeString }}s</h3>
+        {% for object in delete_objects %}
+        <div id="objectWrapper">
+            <button id="{{object.id}}" class="deleteProject">X</button>
+            <div class="objectContainer">
+                <div class="objectTitle">{{object.title}}</div>
+                <div class="objectItem">
+                    <div class="objectBody contentBody">{{object.body}}</div>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
-</div>
 
+    <div class="submitDeleteWrapper">
+        <input type="submit" class="submitDelete">
+    </div>
+{% endif %}
 
-<div class="submitDeleteWrapper">
-    <input type="submit" class="submitDelete">
-</div>
 {% endblock %}
 
 {% block scripts %}

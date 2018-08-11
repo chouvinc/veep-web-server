@@ -37,15 +37,16 @@ def event_model_to_eventviewmodel(event):
 def get_unmapped_properties(obj, map):
     other_properties = []
 
-    for key,val in obj.items():
-        if key not in map:
-            other_properties.append(''.join(key, ': ', val))
+    # TODO implement this somehow -- for some reason sqlalchemy objects are hard to implement
+    # as dictionaries. The idea behind other properties is so that users of the admin portal
+    # can know specifically what they're deleting without having to go back to the
+    # front pages to verify the content of each object
 
     return other_properties
 
 def get_default_map(id, title, header_text):
     return {
-        'id': ' '.join('id:', id),
-        'title': ' '.join('title:', title),
-        'header_text': ' '.join('header_text:', header_text)
+        'id': ' '.join(['id:', str(id)]),
+        'title': ' '.join(['title:', title]),
+        'header_text': ' '.join(['header_text:', header_text])
     }

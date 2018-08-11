@@ -1,9 +1,10 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, RegistrationForm
-from app.util.models import User, Project
+from app.util.models import User
 from app import db
 from app.logic import submit_info_logic, delete_logic
+from app.mappers.display_string_mapper import map
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
@@ -60,7 +61,7 @@ def submit_type(type):
 def delete():
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
-    return render_template('delete.htm')
+    return render_template('delete.htm', init_page=True)
 
 @admin.route('/delete/<type>', methods=['GET', 'POST'])
 def delete_type(type):
@@ -72,6 +73,7 @@ def delete_type(type):
     return render_template('delete.htm',
                            title='Delete',
                            delete_objects=delete_objects,
+                           typeString=map[type],
                            type=type
                            )
 
