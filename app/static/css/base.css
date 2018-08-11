@@ -119,11 +119,6 @@ hr {
     color: #9893DA;
 }
 
-#affiliates {
-    margin-left: 25%;
-    padding-right: 50px;
-}
-
 /* classes for every template to use */
 .colorBorder {
     border-bottom: 3px solid #9893DA;
