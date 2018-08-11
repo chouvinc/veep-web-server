@@ -7,11 +7,11 @@ from config import Config
 
 def form_handler(form):
     return {
-        'project': handle_project(form),
-        'team_member': handle_team_member(form),
-        'executive': handle_executive(form),
-        'event': handle_event(form)
-    }[form.id]
+        'project': handle_project,
+        'team_member': handle_team_member,
+        'executive': handle_executive,
+        'event': handle_event
+    }[form.id](form)
 
 def handle_project(form):
     project = Project(

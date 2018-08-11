@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, RegistrationForm
 from app.util.models import User, Project
 from app import db
-from app.logic import submit_info_logic, project_logic
+from app.logic import submit_info_logic, delete_logic
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
@@ -67,13 +67,11 @@ def delete_type(type):
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
 
-    veep_projects = project_logic.get_veep_projects()
-    veepx_projects = project_logic.get_veepx_projects()
+    delete_objects = delete_logic.populate_objects_by_type(type)
 
-    return render_template('delete_projects.htm',
+    return render_template('delete.htm',
                            title='Delete',
-                           veep_projects=veep_projects,
-                           veepx_projects=veepx_projects,
+                           delete_objects=delete_objects,
                            type=type
                            )
 

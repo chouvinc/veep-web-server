@@ -84,6 +84,10 @@
               integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
               crossorigin="anonymous"></script>
         <script src="{{url_for('static', filename='scripts/base.js')}}"></script>
+        <script type="text/javascript">
+            //TODO: actually pass this serverside so we know on client side where the url is
+            const SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
       {% block scripts %}
       {% endblock %}
     </div>

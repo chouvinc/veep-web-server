@@ -1,0 +1,26 @@
+{% extends 'base.htm' %}
+
+{% block content %}
+
+<div class="deleteObject">
+    <h3>Current VEEP Projects</h3>
+    {% for object in delete_objects %}
+    <button id="{{object.id}}" class="deleteProject">X</button>
+    <div class="objectContainer">
+        <div class="objectTitle">{{object.title}}</div>
+        <div class="objectItem">
+            <div class="objectBody contentBody">{{object.body}}</div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+<div class="submitDeleteWrapper">
+    <input type="submit" class="submitDelete">
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/delete.js') }}"></script>
+{% endblock %}

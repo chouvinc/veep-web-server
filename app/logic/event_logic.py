@@ -1,6 +1,5 @@
 from app.util.models import Event
 from sqlalchemy.exc import OperationalError
-from datetime import datetime
 
 def get_all_events():
     try:

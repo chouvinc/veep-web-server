@@ -10,8 +10,6 @@ def get_veep_projects():
     except OperationalError:
         return []
 
-
-
 def get_veepx_projects():
     try:
         projects = Project.query.filter_by(is_veep_x=True).all()
