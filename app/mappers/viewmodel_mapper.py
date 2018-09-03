@@ -46,7 +46,7 @@ def get_unmapped_properties(obj, map):
 
 def get_default_map(id, title, header_text):
     return {
-        'id': ' '.join(['id:', str(id)]),
+        'id': id,
         'title': ' '.join(['title:', title]),
         'header_text': ' '.join(['header_text:', header_text])
     }

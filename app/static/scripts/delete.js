@@ -14,5 +14,23 @@ $(".deleteProject").click((e) => {
 });
 
 $(".submitDelete").click((e) => {
-    console.log("Submitted")
+    // TODO: move string constants to a separate file
+    let dataType =  window.location.pathname.replace('admin/delete/', '');
+    let fullUrl = window.location.href;
+    let json = JSON.stringify({"type": dataType.substring(1, dataType.length), "ids": Array.from(deleteSet)});
+
+    console.log(Array.from(deleteSet));
+    $.ajax({
+        type: 'POST',
+        url: fullUrl,
+        dataType: 'json',
+        contentType: 'application/json',
+        data: json,
+        success: function (data) {
+            if (data.redirect) {
+                console.log(data.redirect);
+                window.location.href = data.redirect;
+            }
+        }
+    });
 });

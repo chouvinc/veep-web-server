@@ -17,14 +17,9 @@ def get_veepx_projects():
     except OperationalError:
         return []
 
-
 def delete_project_by_id(id):
     try:
-        project = Project.query.filter_by(id=id).first()
-        db.session.delete(project)
-        db.session.commit()
-
-        flash('Project deleted!')
+        delete_projects_by_ids([id])
     except OperationalError:
         flash('Delete failed!')
         return
@@ -32,7 +27,7 @@ def delete_project_by_id(id):
 def delete_projects_by_ids(ids):
     try:
         for id in ids:
-            project = Project.query.filter_by(id=id).first()
+            project = Project.query.get(id)
             db.session.delete(project)
             db.session.commit()
 

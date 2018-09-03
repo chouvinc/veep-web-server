@@ -1,4 +1,4 @@
-from flask import Blueprint, request, render_template, redirect, url_for, flash
+from flask import Blueprint, request, render_template, redirect, url_for, flash, jsonify
 from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, RegistrationForm
 from app.util.models import User
@@ -61,20 +61,36 @@ def submit_type(type):
 def delete():
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
-    return render_template('delete.htm', init_page=True)
+
+    return render_template('delete.htm',
+                           title='Delete',
+                           delete_objects=None,
+                           init_page=True)
 
 @admin.route('/delete/<type>', methods=['GET', 'POST'])
 def delete_type(type):
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
 
-    delete_objects = delete_logic.populate_objects_by_type(type)
+    if request.method == 'POST':
+        # JSON being sent through AJAX.
+        json = request.get_json()
 
-    return render_template('delete.htm',
-                           title='Delete',
-                           delete_objects=delete_objects,
-                           typeString=map[type],
-                           type=type
+        type = json['type']
+        ids_to_delete = json['ids']
+
+        delete_logic.delete_selected_objects(type, ids_to_delete)
+        # This isn't a request from Flask's request context, will need to manually return
+        # a redirect link for AJAX to consume.
+        return jsonify({'redirect': url_for('.delete')})
+    else:
+        delete_objects = delete_logic.populate_objects_by_type(type)
+
+        return render_template('delete.htm',
+                               title='Delete',
+                               delete_objects=delete_objects,
+                               typeString=map[type],
+                               type=type
                            )
 
 # Use this endpoint to add new users to the admin portal
