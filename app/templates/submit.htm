@@ -86,6 +86,15 @@
                 {% for error in form.team_member_email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
+
+                <div>
+                    {{ form.role.label}}<br>
+                    {{ form.role}}
+                </div>
+
+                {% for error in form.role.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
             {% elif form.id == 'executive' %}
             <div class="executives" id="executive">
@@ -113,6 +122,15 @@
                 </div>
 
                 {% for error in form.exec_member_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.role.label}}<br>
+                    {{ form.role}}
+                </div>
+
+                {% for error in form.role.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </div>

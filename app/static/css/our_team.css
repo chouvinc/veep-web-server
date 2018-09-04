@@ -1,0 +1,21 @@
+.photo {
+    width: 200px;
+    height: 200px;
+    background: url("../images/default_photo.jpg") center;
+    background-size: cover;
+    border-radius: 10px;
+    border-bottom: 2px solid #9893DA;
+    margin: auto 0;
+}
+
+.member {
+    align-content: center;
+    display: inline-block;
+    margin-left: 50px;
+}
+
+.text {
+    margin-top: 20px;
+    width: 200px;
+    text-align: center;
+}

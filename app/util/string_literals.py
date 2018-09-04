@@ -1,6 +1,10 @@
 # This class holds string literals and utility functions
-set_password_email_string = """"Welcome aboard the exec team! 
+
+# Email strings
+SET_PASSWORD_EMAIL_STRING = """"Welcome aboard the exec team! 
 Please follow this link to set a new password: %s ."""
+WEBSITE_PREFIX = "[Website]: "
+
 
 
 def route_string_to_display_string(string):

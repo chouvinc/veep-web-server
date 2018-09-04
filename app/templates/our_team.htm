@@ -5,5 +5,43 @@
 {% endblock %}
 
 {% block content %}
-<h2>Our Team</h2>
+<div class="content">
+    <!--TODO: the Executives block and Teams block should have a component-based frontend to reduce repetitiveness
+    (we're defining photo and text boxes for both, think React Components here) -->
+    <h3>Executives</h3>
+    {% for exec in executives %}
+        <div class="member">
+            {% if exec.photo %}
+                <div class="photo" style="background-image: url('{{ exec.photo }}')"></div>
+            {% else %}
+                <!--default photo-->
+                <div class="photo"></div>
+            {% endif %}
+            <div class="text">
+                <div class="name">{{ exec.name }}</div>
+                <div class="role">{{ exec.role }}</div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <h3>Teams</h3>
+    {% for team in teams %}
+        <h4>{{ team.name }}</h4>
+        <p>{{ team.description }}</p>
+        {% for member in team.members %}
+            <div class="member">
+                {% if member.photo %}
+                <div class="photo" style="background-image: url('{{ member.photo }}')"></div>
+                {% else %}
+                <!--default photo-->
+                <div class="photo"></div>
+                {% endif %}
+                <div class="text">
+                    <div class="name">{{ member.name }}</div>
+                    <div class="role">{{ member.role }}</div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}

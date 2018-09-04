@@ -1,5 +1,6 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash, jsonify
 from flask_login import current_user, login_user, logout_user
+from flask_wtf import FlaskForm
 from app.util.form import LoginForm, RegistrationForm
 from app.util.models import User
 from app import db
@@ -8,6 +9,7 @@ from app.mappers.display_string_mapper import map
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
+
 @admin.route('/admin')
 @admin.route('/')
 def index():
@@ -15,6 +17,7 @@ def index():
         return render_template("admin.htm")
     else:
         return redirect(url_for('.login'))
+
 
 @admin.route('/login', methods=['GET', 'POST'])
 def login():
@@ -33,16 +36,19 @@ def login():
         return redirect(url_for('.index'))
     return render_template('login.htm', title='Sign-up', form=form)
 
+
 @admin.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('.index'))
+
 
 @admin.route('/submit')
 def submit():
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
     return render_template('submit.htm', title='Submit', init_page=True)
+
 
 @admin.route('/submit/<type>', methods=['GET', 'POST'])
 def submit_type(type):
@@ -57,6 +63,7 @@ def submit_type(type):
 
     return render_template('submit.htm', title='Submit', form=form)
 
+
 @admin.route('/delete')
 def delete():
     if not current_user.is_authenticated:
@@ -66,6 +73,7 @@ def delete():
                            title='Delete',
                            delete_objects=None,
                            init_page=True)
+
 
 @admin.route('/delete/<type>', methods=['GET', 'POST'])
 def delete_type(type):
@@ -90,8 +98,8 @@ def delete_type(type):
                                title='Delete',
                                delete_objects=delete_objects,
                                typeString=map[type],
-                               type=type
-                           )
+                               type=type)
+
 
 # Use this endpoint to add new users to the admin portal
 @admin.route('/register', methods=['GET', 'POST'])

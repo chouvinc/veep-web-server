@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, flash, request, url_for
-from app.logic import project_logic, email_logic
+from flask import Blueprint, render_template, flash, request
+from app.logic import email_logic, web_logic
 from app.util.string_literals import route_string_to_display_string
 from app.util.form import ContactUsForm
 
@@ -15,8 +15,7 @@ def index():
 
 @main.route('/projects')
 def projects():
-    veep_projects = project_logic.get_veep_projects()
-    veepx_projects = project_logic.get_veepx_projects()
+    veep_projects, veepx_projects = web_logic.get_all_projects()
     return render_template("projects.htm",
                            veep_projects=veep_projects,
                            veepx_projects=veepx_projects)
@@ -38,21 +37,20 @@ def contact_us():
             flash('Email failed...')
             return render_template("contact_us.htm", form=form)
 
+
 @main.route('/events')
 def events():
     return render_template("events.htm")
 
 
-@main.route('/apply')
-def apply():
-    return render_template("apply.htm")
-
 @main.route('/apply/<position>')
 def apply_position(position):
-    # TODO do something w/ the application
+    # TODO link to google forms instead of rendering template
     position_string = route_string_to_display_string(position)
     return render_template("apply.htm", position=position_string)
 
+
 @main.route('/our_team')
 def our_team():
-    return render_template("our_team.htm")
+    executives, teams = web_logic.get_all_members()
+    return render_template("our_team.htm", executives=executives, teams=teams)

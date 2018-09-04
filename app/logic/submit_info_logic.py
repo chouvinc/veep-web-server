@@ -2,8 +2,7 @@ from flask import flash, request
 from app.util.models import Project, Member, Event
 from app import db
 from app.util.form import ProjectForm, TeamMemberForm, ExecMemberForm, EventForm
-from app.logic import email_logic
-from config import Config
+
 
 def form_handler(form):
     return {
@@ -12,6 +11,7 @@ def form_handler(form):
         'executive': handle_executive,
         'event': handle_event
     }[form.id](form)
+
 
 def handle_project(form):
     project = Project(
@@ -25,6 +25,7 @@ def handle_project(form):
     db.session.commit()
     flash('Submitted Project!')
 
+
 def handle_team_member(form):
     member = Member(
         name=form.team_member_name.data,
@@ -37,6 +38,7 @@ def handle_team_member(form):
     db.session.commit()
     flash('Submitted Team Member!')
 
+
 def handle_executive(form):
     executive = Member(
         name=form.exec_member_name.data,
@@ -44,18 +46,12 @@ def handle_executive(form):
         email=form.exec_member_email.data,
         role=form.role.data,
         is_executive=True,
-        username=form.exec_username.data
     )
-
-    # TODO set it so that adding an exec generates a temporary URL that'll let them set their password
-    #user = User(username=form.exec_username.data, email=form.exec_member_email.data)
-    #user.set_password(Config.TEMP_PASSWORD)
-
-    #email_logic.send_set_password_email(user.email)
 
     db.session.add(executive)
     db.session.commit()
     flash('Submitted Executive!')
+
 
 def handle_event(form):
     event = Event(
@@ -68,6 +64,7 @@ def handle_event(form):
     db.session.add(event)
     db.session.commit()
     flash('Submitted Event!')
+
 
 def get_fields_for(formtype):
     return {

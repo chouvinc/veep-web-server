@@ -36,6 +36,8 @@ app.register_blueprint(admin, url_prefix='/admin')
 # shell stuff to make development easier
 from app import app, db
 from app.util.models import User, Post, Project
+
+
 @app.shell_context_processor
 def make_shell_context():
     return {"db": db, "User": User, "Project": Project}

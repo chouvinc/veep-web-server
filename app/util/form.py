@@ -6,11 +6,13 @@ from wtforms import StringField, PasswordField,\
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from app.util.models import User
 
+
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
 
 class ProjectForm(FlaskForm):
     id = 'project'
@@ -23,24 +25,31 @@ class ProjectForm(FlaskForm):
 
     submit = SubmitField('Submit Project')
 
+
 class TeamMemberForm(FlaskForm):
     id = 'team_member'
     team_name = StringField('Team Name', validators=[DataRequired()])
     team_member_name = StringField('Member Name', validators=[DataRequired()])
     team_member_email = StringField('Email', validators=[DataRequired()])
-    # TODO add selectField for role
+    role = SelectField('Role',
+                       choices=[('project_manager', 'Project Manager'),
+                                ('team_member', 'Team Member'),
+                                ('technical_advisor', 'Technical Advisor')],
+                       default='team_member')
 
     submit = SubmitField('Submit Team Member')
 
+
 class ExecMemberForm(FlaskForm):
     id = 'executive'
+    # TODO this should really be a select field
     exec_team = StringField('Exec Team (BD, Ops, Marketing, etc.)', validators=[DataRequired()])
     exec_member_name = StringField('Member Name', validators=[DataRequired()])
     exec_member_email = StringField('Email', validators=[DataRequired()])
-    exec_username = StringField('Username', validators=[DataRequired()])
-    # TODO add selectField for role
+    role = StringField('Role', validators=[DataRequired()])
 
     submit = SubmitField('Submit Exec Member')
+
 
 class EventForm(FlaskForm):
     id = 'event'
@@ -51,6 +60,7 @@ class EventForm(FlaskForm):
     event_desc = TextAreaField('Event Description', validators=[DataRequired()])
 
     submit = SubmitField('Submit Event')
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -69,6 +79,7 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
 
 class ContactUsForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired("Please enter your name.")])
