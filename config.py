@@ -13,4 +13,4 @@ class Config(object):
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
     TEMP_PASSWORD = os.environ.get('TEMP_PASSWORD') or "Testtest"
-    ADMINS = os.environ.get('ADMINS') or ["vin.chou@mail.utoronto.ca"]
+    ADMINS = os.environ.get('ADMINS') or "vin.chou@mail.utoronto.ca"
