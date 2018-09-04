@@ -44,7 +44,6 @@ class Member(db.Model):
     photo_url = db.Column(db.String(120), default='n/a')
     role = db.Column(db.String(120), index=True)
     is_executive = db.Column(db.Boolean, index=True, default=False)
-    username = db.Column(db.String(120), index=True)
 
 
 class Project(db.Model):
