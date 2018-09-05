@@ -17,6 +17,7 @@ flask-script = "*"
 "psycopg2" = "*"
 "boto3" = "*"
 "flask-s3" = "*"
+Pipfile = "*"
 
 [requires]
 python_version = "3.6"

@@ -62,12 +62,26 @@ class EventForm(FlaskForm):
     submit = SubmitField('Submit Event')
 
 
+# Used for creating a user with a generated password
+class GeneralRegistrationForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different username.')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError('Please use a different email address.')
+
+
+# Used for a creating a user with a given password
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     def validate_username(self, username):
@@ -88,3 +102,10 @@ class ContactUsForm(FlaskForm):
     message_text = TextAreaField('Email Body', validators=[DataRequired("Please enter a message.")])
 
     submit = SubmitField('Submit Email')
+
+
+class ChangePasswordForm(FlaskForm):
+    current_password = PasswordField('Current password', validators=[DataRequired()])
+    password = PasswordField('New password', validators=[DataRequired()])
+    password2 = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Submit')

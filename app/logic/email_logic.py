@@ -15,9 +15,9 @@ def form_handler(form):
     """ % (form.name.data, form.email.data, form.message_text.data)
     mail.send(message)
 
-def send_set_password_email(email):
+def send_set_password_email(email, password):
     message = Message(WEBSITE_PREFIX + "Set Your Admin Password", sender='operations@uoftveep.com', recipients=[email])
-    message.body = SET_PASSWORD_EMAIL_STRING % (url_for('admin.set_password'))
+    message.body = SET_PASSWORD_EMAIL_STRING % (url_for('admin.set_password'), password)
     mail.send(message)
 
 # TODO rename functions to more descriptive names

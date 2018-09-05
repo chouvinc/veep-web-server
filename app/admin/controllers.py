@@ -1,11 +1,14 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash, jsonify
 from flask_login import current_user, login_user, logout_user
 from flask_wtf import FlaskForm
-from app.util.form import LoginForm, RegistrationForm
+from app.util.form import LoginForm, RegistrationForm, ChangePasswordForm
 from app.util.models import User
 from app import db
-from app.logic import submit_info_logic, delete_logic
+from app.logic import submit_info_logic, delete_logic, email_logic
 from app.mappers.display_string_mapper import map
+
+import datetime
+import hashlib
 
 admin = Blueprint('admin', __name__, template_folder='templates')
 
@@ -111,12 +114,35 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
+
+        # Create a password based on current time
+        hash_obj = hashlib.sha1(str(datetime.datetime.now()).encode())
+        generated_password = hash_obj.hexdigest()[0:8]
+        user.set_password(generated_password)
         db.session.add(user)
         db.session.commit()
         flash('Registered!')
+
+        # Send an email to the user to change their password
+        #email_logic.send_set_password_email(form.email.data, generated_password)
         return redirect(url_for('.login'))
     return render_template('register.htm', title='Register', form=form)
+
+
+# Use this endpoint to change password
+@admin.route('/change_password', methods=['GET', 'POST'])
+def change_password():
+    if not current_user.is_authenticated:
+        admin_only_msg = "Sorry, only users can change their passwords."
+        flash(admin_only_msg)
+        return render_template('change_password.htm', title='Change Password', admin_only_msg=admin_only_msg)
+    form = ChangePasswordForm()
+    if form.validate_on_submit():
+        current_user.set_password(form.password.data)
+        db.session.commit()
+        flash('Password changed')
+        return redirect(url_for('.login'))
+    return render_template('change_password.htm', title='Change Password', form=form)
 
 # TODO: change register to add username/email only, and then check in login if user has a password.
 # TODO: If they don't have a password prompt them to create one (so we can continue w/ the execs add other execs paradigm)

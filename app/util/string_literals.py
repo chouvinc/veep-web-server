@@ -2,7 +2,7 @@
 
 # Email strings
 SET_PASSWORD_EMAIL_STRING = """"Welcome aboard the exec team! 
-Please follow this link to set a new password: %s ."""
+Please follow this link to set a new password: %s . Your temporary password is: """
 WEBSITE_PREFIX = "[Website]: "
 
 
