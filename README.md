@@ -22,3 +22,5 @@ To start a development server:
 * make a new virtualenv
 * run `pipenv run python setup.py`
 * go to localhost:5000
+
+app.config['key']

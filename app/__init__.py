@@ -2,6 +2,7 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
+from flask_s3 import FlaskS3
 from config import Config
 
 # initialize other entities
@@ -32,6 +33,9 @@ from app.main.controllers import main
 # separate admin portal from regular users
 app.register_blueprint(main, url_prefix='/')
 app.register_blueprint(admin, url_prefix='/admin')
+
+# adding s3
+s3 = FlaskS3(app)
 
 # shell stuff to make development easier
 from app import app, db
