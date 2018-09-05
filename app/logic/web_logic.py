@@ -1,4 +1,5 @@
 from app.dao import project_dao, member_dao
+from app.mappers import display_string_mapper
 
 
 def get_all_projects():
@@ -15,7 +16,7 @@ def get_all_members():
 
         for member in members:
             # need to be careful here, if we commit the member now it could overwrite the old data
-            member.role = snake_case_to_title(member.role)
+            member.role = display_string_mapper.map[member.role]
 
         team_list.append({"name": title, "members": members})
 
@@ -32,12 +33,3 @@ def get_project_names_from_projects():
         return list(map(lambda project: project.title, all_projects))
     else:
         return []
-
-
-def snake_case_to_title(snake_case_string):
-    split = snake_case_string.split('_')
-    if split:
-        return ' '.join(word.title() for word in split)
-    else:
-        # String is already in proper format
-        return snake_case_string
