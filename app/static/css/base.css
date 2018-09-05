@@ -112,9 +112,6 @@ hr {
 
 #veep {
     font-weight: bold;
-}
-
-#veep > a {
     font-size: 1.1em;
     color: #9893DA;
 }
