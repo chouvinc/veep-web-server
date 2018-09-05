@@ -2,7 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField,\
     BooleanField, SubmitField,\
     SelectField, TextAreaField,\
-    DateTimeField, RadioField
+    DateTimeField, RadioField, \
+    FileField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from app.util.models import User
 
@@ -31,6 +32,7 @@ class TeamMemberForm(FlaskForm):
     team_name = StringField('Team Name', validators=[DataRequired()])
     team_member_name = StringField('Member Name', validators=[DataRequired()])
     team_member_email = StringField('Email', validators=[DataRequired()])
+    photo = FileField('Upload Photo')
     role = SelectField('Role',
                        choices=[('project_manager', 'Project Manager'),
                                 ('team_member', 'Team Member'),
@@ -47,6 +49,7 @@ class ExecMemberForm(FlaskForm):
     exec_member_name = StringField('Member Name', validators=[DataRequired()])
     exec_member_email = StringField('Email', validators=[DataRequired()])
     role = StringField('Role', validators=[DataRequired()])
+    photo = FileField('Upload Photo')
 
     submit = SubmitField('Submit Exec Member')
 

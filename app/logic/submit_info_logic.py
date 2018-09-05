@@ -31,7 +31,8 @@ def handle_team_member(form):
         name=form.team_member_name.data,
         team=form.team_name.data,
         email=form.team_member_email.data,
-        role=form.role.data
+        role=form.role.data,
+        photo_url=form.role.photo
     )
 
     db.session.add(member)
@@ -46,6 +47,7 @@ def handle_executive(form):
         email=form.exec_member_email.data,
         role=form.role.data,
         is_executive=True,
+        photo_url=form.role.photo
     )
 
     db.session.add(executive)

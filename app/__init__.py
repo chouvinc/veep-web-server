@@ -34,9 +34,6 @@ from app.main.controllers import main
 app.register_blueprint(main, url_prefix='/')
 app.register_blueprint(admin, url_prefix='/admin')
 
-# adding s3
-s3 = FlaskS3(app)
-
 # shell stuff to make development easier
 from app import app, db
 from app.util.models import User, Post, Project

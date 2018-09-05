@@ -95,6 +95,15 @@
                 {% for error in form.role.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
+
+                <div>
+                    {{ form.photo.label}}<br>
+                    {{ form.photo}}
+                </div>
+
+                {% for error in form.photo.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
             </div>
             {% elif form.id == 'executive' %}
             <div class="executives" id="executive">
@@ -131,6 +140,15 @@
                 </div>
 
                 {% for error in form.role.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.photo.label}}<br>
+                    {{ form.photo}}
+                </div>
+
+                {% for error in form.photo.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
             </div>
