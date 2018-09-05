@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, request
+from flask import Blueprint, render_template, flash, request, url_for, redirect
 from app.logic import email_logic, web_logic
 from app.util.string_literals import route_string_to_display_string
 from app.util.form import ContactUsForm
@@ -32,7 +32,7 @@ def contact_us():
         if form.validate_on_submit():
             flash('Emailed!')
             email_logic.form_handler(form)
-            return render_template("contact_us.htm", form=form)
+            return redirect(url_for('.contact_us'))
         else:
             flash('Email failed...')
             return render_template("contact_us.htm", form=form)
