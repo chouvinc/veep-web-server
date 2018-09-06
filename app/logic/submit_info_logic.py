@@ -56,9 +56,11 @@ def handle_executive(form):
 
 
 def handle_event(form):
+    date = ' '.join([form.event_year.data, form.event_month.data, form.event_day.data])
+
     event = Event(
         title=form.event_title.data,
-        date=form.event_date.data,
+        date=date,
         location=form.event_location.data,
         desc=form.event_desc.data
     )

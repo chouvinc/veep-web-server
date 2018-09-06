@@ -1,12 +1,15 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/events.css')}}">
+{% endblock %}
+
 {% block content %}
 <div class="content">
     <h2>Events</h2>
 
     {% for event in events %}
-    <h3 class="title">{{ event.title }} | <span class="date">{{ event.date}}</span></h3>
-        <div class="location">{{ event.location }}</div>
+    <h3 class="title">{{ event.title }} | <span class="faded">{{ event.date}} | {{ event.location }}</span></h3>
         <div class="text">
             {{ event.desc }}
         </div>

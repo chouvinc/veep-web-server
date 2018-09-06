@@ -1,5 +1,9 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/submit.css')}}">
+{% endblock %}
+
 {% block content %}
 <div class="submitForm">
     {% if init_page %}
@@ -163,14 +167,22 @@
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
 
-                <div>
-                    {{ form.event_date.label }}<br>
-                    {{ form.event_date }}<br>
-                </div>
+                <div class="date">
+                    <span>
+                        {{ form.event_year.label }}
+                        {{ form.event_year }}
+                    </span>
 
-                {% for error in form.event_date.errors %}
-                <span style="color: red;">[{{ error }}]</span>
-                {% endfor %}
+                    <span>
+                        {{ form.event_month.label }}
+                        {{ form.event_month }}
+                    </span>
+
+                    <span>
+                        {{ form.event_day.label }}
+                        {{ form.event_day }}
+                    </span>
+                </div>
 
                 <div>
                     {{ form.event_location.label}}<br>

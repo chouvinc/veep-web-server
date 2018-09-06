@@ -2,8 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField,\
     BooleanField, SubmitField,\
     SelectField, TextAreaField,\
-    DateTimeField, RadioField, \
-    FileField
+    RadioField, FileField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 from app.util.models import User
 
@@ -57,7 +56,9 @@ class ExecMemberForm(FlaskForm):
 class EventForm(FlaskForm):
     id = 'event'
     event_title = StringField('Event Title', validators=[DataRequired()])
-    event_date = DateTimeField('Event Date', validators=[DataRequired()], format='%Y-%m-%d')
+    event_year = StringField('Year', validators=[DataRequired()])
+    event_month = StringField('Month', validators=[DataRequired()])
+    event_day = StringField('Day', validators=[DataRequired()])
     # TODO possibly use a google maps API here to link directly to maps
     event_location = StringField('Event Location', validators=[DataRequired()])
     event_desc = TextAreaField('Event Description', validators=[DataRequired()])
