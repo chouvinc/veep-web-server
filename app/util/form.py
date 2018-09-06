@@ -57,7 +57,7 @@ class ExecMemberForm(FlaskForm):
 class EventForm(FlaskForm):
     id = 'event'
     event_title = StringField('Event Title', validators=[DataRequired()])
-    event_date = DateTimeField('Event Date', validators=[DataRequired()])
+    event_date = DateTimeField('Event Date', validators=[DataRequired()], format='%Y-%m-%d')
     # TODO possibly use a google maps API here to link directly to maps
     event_location = StringField('Event Location', validators=[DataRequired()])
     event_desc = TextAreaField('Event Description', validators=[DataRequired()])

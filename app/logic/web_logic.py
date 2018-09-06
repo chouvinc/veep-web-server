@@ -1,4 +1,4 @@
-from app.dao import project_dao, member_dao
+from app.dao import project_dao, member_dao, event_dao
 from app.mappers import display_string_mapper
 
 
@@ -33,3 +33,7 @@ def get_project_names_from_projects():
         return list(map(lambda project: project.title, all_projects))
     else:
         return []
+
+
+def get_all_events():
+    return event_dao.get_all_events()

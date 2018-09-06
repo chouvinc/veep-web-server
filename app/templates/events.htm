@@ -1,5 +1,15 @@
 {% extends 'base.htm' %}
 
 {% block content %}
-<h2>Events</h2>
+<div class="content">
+    <h2>Events</h2>
+
+    {% for event in events %}
+    <h3 class="title">{{ event.title }} | <span class="date">{{ event.date}}</span></h3>
+        <div class="location">{{ event.location }}</div>
+        <div class="text">
+            {{ event.desc }}
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

@@ -40,7 +40,8 @@ def contact_us():
 
 @main.route('/events')
 def events():
-    return render_template("events.htm")
+    events = web_logic.get_all_events()
+    return render_template("events.htm", events=events)
 
 
 @main.route('/apply/<position>')
