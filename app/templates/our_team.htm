@@ -11,12 +11,7 @@
     <h3>Executives</h3>
     {% for exec in executives %}
         <div class="member">
-            {% if exec.photo %}
-                <div class="photo" style="background-image: url('{{ exec.photo }}')"></div>
-            {% else %}
-                <!--default photo-->
-                <div class="photo"></div>
-            {% endif %}
+            <div class="photo" style="background-image: url('{{ exec.photo_url }}')"></div>
             <div class="text">
                 <div class="name">{{ exec.name }}</div>
                 <div class="role">{{ exec.role }}</div>
@@ -30,12 +25,7 @@
         <p>{{ team.description }}</p>
         {% for member in team.members %}
             <div class="member">
-                {% if member.photo %}
-                <div class="photo" style="background-image: url('{{ member.photo }}')"></div>
-                {% else %}
-                <!--default photo-->
-                <div class="photo"></div>
-                {% endif %}
+                <div class="photo" style="background-image: url('{{ member.photo_url }}')"></div>
                 <div class="text">
                     <div class="name">{{ member.name }}</div>
                     <div class="role">{{ member.role }}</div>

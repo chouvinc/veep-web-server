@@ -19,6 +19,9 @@ mail.init_app(app)
 # give it a database (for now using sqlite)
 db = SQLAlchemy(app)
 
+# S3 initialization
+s3 = FlaskS3(app)
+
 # login manager
 login_manager = LoginManager()
 login_manager.init_app(app)

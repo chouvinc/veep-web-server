@@ -41,7 +41,7 @@ class Member(db.Model):
     # TODO: make email unique once we test everything
     email = db.Column(db.String(120), index=True)
     # TODO: run the url through a compressor if the link is very long
-    photo_url = db.Column(db.String(120), default='n/a')
+    photo_url = db.Column(db.String(120))
     role = db.Column(db.String(120), index=True)
     is_executive = db.Column(db.Boolean, index=True, default=False)
 
