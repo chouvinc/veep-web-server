@@ -24,11 +24,13 @@ class Config(object):
     # S3 stuff
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-    FLASKS3_BUCKET_NAME = os.environ.get('FLASKS3_BUCKET_NAME')
+    FLASKS3_BUCKET_NAME = os.environ.get('FLASKS3_BUCKET_NAME') or 'veep-member-pictures'
     FLASKS3_FILEPATH_HEADERS = {
         r'.css$': {
             'Content-Type': 'text/css',
         }
     }
+    S3_ENDPOINT = os.environ.get('S3_ENDPOINT') or 'https://veep-member-pictures.s3.amazonaws.com/'
+    UPLOAD_FOLDER = '/uploads'
 
 

@@ -1,5 +1,6 @@
 from app.dao import project_dao, member_dao, event_dao
 from app.mappers import display_string_mapper
+from flask import url_for
 
 def get_all_projects():
     return project_dao.get_veep_projects(), project_dao.get_veepx_projects()
@@ -19,7 +20,6 @@ def get_all_members():
 
         team_list.append({"name": title, "members": members})
 
-    print(executives, team_list)
     return executives, team_list
 
 

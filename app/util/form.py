@@ -1,9 +1,11 @@
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileRequired
 from wtforms import StringField, PasswordField,\
     BooleanField, SubmitField,\
     SelectField, TextAreaField,\
-    RadioField, FileField
+    RadioField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+
 from app.util.models import User
 
 
@@ -31,7 +33,6 @@ class TeamMemberForm(FlaskForm):
     team_name = StringField('Team Name', validators=[DataRequired()])
     team_member_name = StringField('Member Name', validators=[DataRequired()])
     team_member_email = StringField('Email', validators=[DataRequired()])
-    photo = StringField('Photo URL?')
     role = SelectField('Role',
                        choices=[('project_manager', 'Project Manager'),
                                 ('team_member', 'Team Member'),
@@ -48,7 +49,6 @@ class ExecMemberForm(FlaskForm):
     exec_member_name = StringField('Member Name', validators=[DataRequired()])
     exec_member_email = StringField('Email', validators=[DataRequired()])
     role = StringField('Role', validators=[DataRequired()])
-    photo = StringField('Photo URL?')
 
     submit = SubmitField('Submit Exec Member')
 
@@ -113,3 +113,7 @@ class ChangePasswordForm(FlaskForm):
     password = PasswordField('New password', validators=[DataRequired()])
     password2 = PasswordField('Confirm password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Submit')
+
+
+class UploadPhotoForm(FlaskForm):
+    file = FileField()

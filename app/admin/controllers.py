@@ -1,11 +1,12 @@
 from flask import Blueprint, request, render_template, redirect, url_for, flash, jsonify
 from flask_login import current_user, login_user, logout_user
-from flask_wtf import FlaskForm
 from app.util.form import LoginForm, RegistrationForm, ChangePasswordForm
 from app.util.models import User
 from app import db
-from app.logic import submit_info_logic, delete_logic, email_logic
+from app.logic import submit_info_logic, delete_logic, edit_info_logic
 from app.mappers.display_string_mapper import map
+
+from pprint import pprint
 
 import datetime
 import hashlib
@@ -102,6 +103,29 @@ def delete_type(type):
                                delete_objects=delete_objects,
                                typeString=map[type],
                                type=type)
+
+
+@admin.route('/edit')
+def edit():
+    if not current_user.is_authenticated:
+        return redirect(url_for('.login'))
+    return render_template('edit.htm')
+
+
+@admin.route('/edit/<type>', methods=['GET', 'POST'])
+def edit_type(type):
+    # TODO: add generic authentication layer (consider using decorators, I don't know too much about them so will
+    # need to research and see what's standard practice). ~Vincent
+    if not current_user.is_authenticated:
+        return redirect(url_for('.login'))
+
+    form = edit_info_logic.get_fields_for(type)
+
+    if form.validate_on_submit:
+        edit_info_logic.form_handler(form)
+        return redirect(url_for('.submit'))
+
+    return render_template('edit.htm', title='Edit', form=form)
 
 
 # Use this endpoint to add new users to the admin portal

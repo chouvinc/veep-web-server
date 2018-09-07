@@ -1,8 +1,9 @@
 from app.util.models import Project, Member, Event
-from app import db
+from app import db, app
 from app.util.form import ProjectForm, TeamMemberForm, ExecMemberForm, EventForm
 from flask import flash, request
 from random import randint
+
 
 def form_handler(form):
     return {
@@ -27,10 +28,7 @@ def handle_project(form):
 
 
 def handle_team_member(form):
-    if form.photo.data:
-        photo_url = form.photo.data
-    else:
-        photo_url = get_random_corgi_url()
+    photo_url = get_random_corgi_url()
 
     member = Member(
         name=form.team_member_name.data,
@@ -46,10 +44,7 @@ def handle_team_member(form):
 
 
 def handle_executive(form):
-    if form.photo.data:
-        photo_url = form.photo.data
-    else:
-        photo_url = get_random_corgi_url()
+    photo_url = get_random_corgi_url()
 
     executive = Member(
         name=form.exec_member_name.data,
@@ -90,7 +85,6 @@ def get_fields_for(formtype):
 
 
 def get_random_corgi_url():
-    print('this got called')
     integer = randint(1, 5)
-    filename = ''.join(['https://veep-member-pictures.s3.amazonaws.com/static/', 'images/corgi', str(integer), '.jpg'])
+    filename = ''.join([app.config['S3_ENDPOINT'], 'static/images/corgi', str(integer), '.jpg'])
     return filename
