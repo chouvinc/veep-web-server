@@ -1,4 +1,4 @@
-def form_handler():
+def form_handler(form):
     pass
 
 

@@ -63,7 +63,7 @@ def submit_type(type):
         submit_info_logic.form_handler(form)
         return redirect(url_for('.submit'))
 
-    return render_template('submit.htm', title='Submit', form=form)
+    return render_template('submit.htm', title='Submit', form=form, type=type)
 
 
 @admin.route('/delete')
@@ -121,7 +121,8 @@ def edit_type(type):
 
     if form.validate_on_submit:
         edit_info_logic.form_handler(form)
-        return redirect(url_for('.submit'))
+        flash('Edited!')
+        return redirect(url_for('.edit'))
 
     return render_template('edit.htm', title='Edit', form=form)
 

@@ -1,1 +1,13 @@
-TO BE IMPLEMENTED
+{% extends 'base.htm' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit.css') }}">
+{% endblock %}
+
+{% block content %}
+
+{% if init_page %}
+{% else %}
+{% endif %}
+
+{% endblock %}

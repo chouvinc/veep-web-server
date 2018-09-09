@@ -10,7 +10,7 @@
     (we're defining photo and text boxes for both, think React Components here) -->
     <h3>Executives</h3>
     {% for exec in executives %}
-        <div class="member">
+        <div class="member" id="{{ exec.id }}">
             <div class="photo" style="background-image: url('{{ exec.photo_url }}')"></div>
             <div class="text">
                 <div class="name">{{ exec.name }}</div>
@@ -24,7 +24,7 @@
         <h4>{{ team.name }}</h4>
         <p>{{ team.description }}</p>
         {% for member in team.members %}
-            <div class="member">
+            <div class="member" id="{{ member.id }}">
                 <div class="photo" style="background-image: url('{{ member.photo_url }}')"></div>
                 <div class="text">
                     <div class="name">{{ member.name }}</div>

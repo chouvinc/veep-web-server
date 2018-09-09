@@ -38,6 +38,7 @@ class TeamMemberForm(FlaskForm):
                                 ('team_member', 'Team Member'),
                                 ('technical_advisor', 'Technical Advisor')],
                        default='team_member')
+    photo = FileField('Upload photo')
 
     submit = SubmitField('Submit Team Member')
 
@@ -49,6 +50,7 @@ class ExecMemberForm(FlaskForm):
     exec_member_name = StringField('Member Name', validators=[DataRequired()])
     exec_member_email = StringField('Email', validators=[DataRequired()])
     role = StringField('Role', validators=[DataRequired()])
+    photo = FileField('Upload photo')
 
     submit = SubmitField('Submit Exec Member')
 

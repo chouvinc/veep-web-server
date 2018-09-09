@@ -1,5 +1,6 @@
 from app.util.models import Project, Member, Event
 from app import db, app
+from app.dao import s3_dao
 from app.util.form import ProjectForm, TeamMemberForm, ExecMemberForm, EventForm
 from flask import flash, request
 from random import randint
@@ -28,7 +29,10 @@ def handle_project(form):
 
 
 def handle_team_member(form):
-    photo_url = get_random_corgi_url()
+    if form.photo.data:
+        photo_url = s3_dao.upload_to_s3(form.photo.data)
+    else:
+        photo_url = get_default_url()
 
     member = Member(
         name=form.team_member_name.data,
@@ -44,7 +48,10 @@ def handle_team_member(form):
 
 
 def handle_executive(form):
-    photo_url = get_random_corgi_url()
+    if form.photo.data:
+        photo_url = s3_dao.upload_to_s3(form.photo.data)
+    else:
+        photo_url = get_default_url()
 
     executive = Member(
         name=form.exec_member_name.data,
@@ -78,13 +85,14 @@ def handle_event(form):
 def get_fields_for(formtype):
     return {
         'project': ProjectForm(request.form),
-        'team_member': TeamMemberForm(request.form),
-        'executive': ExecMemberForm(request.form),
+        # don't bind existing form data to this new form since it breaks FileFields:
+        # https://stackoverflow.com/questions/19203343/flask-wtf-filefield-does-not-set-data-attribute-to-an-instance-of-werkzeug-files
+        'team_member': TeamMemberForm(),
+        'executive': ExecMemberForm(),
         'event': EventForm(request.form)
     }[formtype]
 
 
-def get_random_corgi_url():
-    integer = randint(1, 5)
-    filename = ''.join([app.config['S3_ENDPOINT'], 'static/images/corgi', str(integer), '.jpg'])
+def get_default_url():
+    filename = ''.join([app.config['S3_ENDPOINT'], 'static/images/default.png'])
     return filename
