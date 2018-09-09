@@ -146,7 +146,7 @@ def register():
         flash('Registered!')
 
         # Send an email to the user to change their password
-        email_logic.send_set_password_email(form.email.data, generated_password)
+        email_logic.send_set_password_email(form.email.data, form.username.data, generated_password)
         return redirect(url_for('.login'))
     return render_template('register.htm', title='Register', form=form)
 

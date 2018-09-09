@@ -7,6 +7,7 @@ from flask import url_for
 # Please only use a space as a delimiter.
 admins = Config.ADMINS.split(' ')
 
+
 def form_handler(form):
     message = Message(WEBSITE_PREFIX + form.subject.data, sender='operations@uoftveep.com', recipients=['operations@uoftveep.com'] + admins)
     message.body = """
@@ -15,9 +16,10 @@ def form_handler(form):
     """ % (form.name.data, form.email.data, form.message_text.data)
     mail.send(message)
 
-def send_set_password_email(email, password):
+
+def send_set_password_email(email, username, password):
     message = Message(WEBSITE_PREFIX + "Set Your Admin Password", sender='operations@uoftveep.com', recipients=[email])
-    message.body = SET_PASSWORD_EMAIL_STRING % (''.join([BASEURL, 'admin/login']), password, ''.join([BASEURL, 'admin/change_password']))
+    message.body = SET_PASSWORD_EMAIL_STRING % (''.join([BASEURL, 'admin/login']), username, password, ''.join([BASEURL, 'admin/change_password']))
     mail.send(message)
 
 # TODO rename functions to more descriptive names
