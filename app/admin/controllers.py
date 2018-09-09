@@ -152,7 +152,7 @@ def register():
 
 
 # Use this endpoint to change password
-@admin.route('/change_password', methods=['GET', 'POST'])
+@admin.route('/change_password/', methods=['GET', 'POST'])
 def change_password():
     if not current_user.is_authenticated:
         admin_only_msg = "Sorry, only users can change their passwords."

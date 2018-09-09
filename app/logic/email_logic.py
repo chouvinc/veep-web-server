@@ -1,4 +1,4 @@
-from app.util.string_literals import WEBSITE_PREFIX, SET_PASSWORD_EMAIL_STRING
+from app.util.string_literals import WEBSITE_PREFIX, SET_PASSWORD_EMAIL_STRING, BASEURL
 from app import Config, mail
 from flask_mail import Message
 from flask import url_for
@@ -17,7 +17,7 @@ def form_handler(form):
 
 def send_set_password_email(email, password):
     message = Message(WEBSITE_PREFIX + "Set Your Admin Password", sender='operations@uoftveep.com', recipients=[email])
-    message.body = SET_PASSWORD_EMAIL_STRING % (url_for('admin.change_password'), password)
+    message.body = SET_PASSWORD_EMAIL_STRING % (''.join([BASEURL, 'admin/login']), password, ''.join([BASEURL, 'admin/change_password']))
     mail.send(message)
 
 # TODO rename functions to more descriptive names

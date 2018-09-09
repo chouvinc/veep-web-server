@@ -1,10 +1,12 @@
 # This class holds string literals and utility functions
 
 # Email strings
-SET_PASSWORD_EMAIL_STRING = """"Welcome aboard the exec team! 
-Please follow this link to set a new password: %s . Your temporary password is: %s"""
+SET_PASSWORD_EMAIL_STRING = """Welcome aboard the exec team! 
+Please follow this link to login: %s . Your temporary password is: %s
+After signing in please follow this link to change your password: %s
+"""
 WEBSITE_PREFIX = "[Website]: "
-
+BASEURL = 'https://uoftveep.herokuapp.com/'
 
 
 def route_string_to_display_string(string):
