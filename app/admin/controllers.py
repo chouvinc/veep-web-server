@@ -3,10 +3,8 @@ from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, RegistrationForm, ChangePasswordForm
 from app.util.models import User
 from app import db
-from app.logic import submit_info_logic, delete_logic, edit_info_logic
+from app.logic import submit_info_logic, delete_logic, edit_info_logic, email_logic
 from app.mappers.display_string_mapper import map
-
-from pprint import pprint
 
 import datetime
 import hashlib
@@ -148,7 +146,7 @@ def register():
         flash('Registered!')
 
         # Send an email to the user to change their password
-        #email_logic.send_set_password_email(form.email.data, generated_password)
+        email_logic.send_set_password_email(form.email.data, generated_password)
         return redirect(url_for('.login'))
     return render_template('register.htm', title='Register', form=form)
 
