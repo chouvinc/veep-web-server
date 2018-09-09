@@ -16,7 +16,6 @@ flask-mail = "*"
 flask-script = "*"
 "psycopg2" = "*"
 "boto3" = "*"
-"flask-s3" = "*"
 Pipfile = "*"
 
 [requires]

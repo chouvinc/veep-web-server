@@ -115,5 +115,7 @@ class ChangePasswordForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class UploadPhotoForm(FlaskForm):
+class UploadPhotoForm():
+    # FileField from flask-wtf doesn't take any arguments (it has internal state tracking for request forms)
+    # Passing request.form into the constructor will actually make this fail.
     file = FileField()
