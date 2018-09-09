@@ -1,9 +1,9 @@
 .banner {
     width: 100%;
     min-height: 250px;
-    background: url("../images/logo.jpg") no-repeat #aea9f2 0px 75px;
-    background-size: contain;
-    padding-top: 250px;
+    background: url("../images/logo.jpg") no-repeat #aea9f2 0px 25px;
+    background-size: cover;
+    padding-top: 200px;
     text-align: center;
     color: white;
     font-size: 2em;

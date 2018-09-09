@@ -2,7 +2,6 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
-from flask_s3 import FlaskS3
 from config import Config
 
 # initialize other entities
