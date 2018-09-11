@@ -1,6 +1,7 @@
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
+
 class Config(object):
     # Specify which emails are admins that want to receive website emails
     ADMINS = os.environ.get('ADMINS') or "vin.chou@mail.utoronto.ca"
