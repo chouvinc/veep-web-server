@@ -6,10 +6,6 @@ from pprint import pprint
 from flask import request
 
 
-# This is unused until we add edit functionality. We can't use flask-wtf's FileField form field
-# since our existing form has other non-flask-wtf form fields. Since flask-wtf can only take in
-# both request.files and request.form, it means that those fields are exclusive of each other.
-# It's a really dumb bug that you can read more on here: https://github.com/pallets/flask/issues/460
 def upload_to_s3(file):
     filename = secure_filename(file.filename)
 

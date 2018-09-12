@@ -186,6 +186,18 @@
         </div>
     </div>
 </div>
+
+<hr>
+<div class="logos contentEntry">
+    <h2>Current Clients</h2>
+    {% for client in clients %}
+        <a href="{{ client.site_url }}"><div class="logo" style="background-image: url('{{ client.image_url }}')"></div></a>
+    {% endfor %}
+    <h2>Contributors</h2>
+    {% for contributor in contributors %}
+        <a href="{{ contributor.site_url }}"><div class="logo" style="background-image: url('{{ contributor.image_url }}')"></div></a>
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block scripts %}

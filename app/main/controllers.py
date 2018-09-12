@@ -9,8 +9,22 @@ main = Blueprint('main', __name__, template_folder='templates')
 @main.route('/index')
 @main.route('/')
 def index():
-    # TODO fix all the links in footer_items to actually point to a page
-    return render_template("index.htm")
+    # TODO add these to DB
+    clients = [
+        {'name': 'Girls eMentorship', 'site_url': 'http://girlsementorship.com/', 'image_url': url_for('static', filename='images/gem.png')},
+        {'name': '180 Degrees Consulting', 'site_url': 'https://180dc.org/', 'image_url': url_for('static', filename='images/180.jpg')},
+        {'name': 'reBOOT Canada', 'site_url': 'https://www.rebootcanada.ca/', 'image_url': url_for('static', filename='images/reboot.jpg')},
+        {'name': 'Brands for Canada', 'site_url': 'https://www.brandsforcanada.com/', 'image_url': url_for('static', filename='images/brands.jpg')},
+        {'name': 'Health Out Loud', 'site_url': 'http://healthoutloud.org/', 'image_url': url_for('static', filename='images/hol.png')},
+    ]
+
+    contributors = [
+        {'name': 'Toronto Professionals Volunteer Hub', 'site_url': 'https://www.tpvh.ca/', 'image_url': url_for('static', filename='images/tpvh.png')},
+        {'name': 'Pluralsight One', 'site_url': 'https://www.pluralsightone.org/', 'image_url': url_for('static', filename='images/pluralsightone.png')},
+        {'name': 'Lighthouse Labs', 'site_url': 'https://lighthouselabs.ca/', 'image_url': url_for('static', filename='images/lighthouse_labs.png')},
+    ]
+
+    return render_template("index.htm", clients=clients, contributors=contributors)
 
 
 @main.route('/projects')

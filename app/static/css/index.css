@@ -2,8 +2,7 @@
     width: 100%;
     min-height: 250px;
     background: url("../images/logo.jpg") no-repeat #aea9f2 0px 25px;
-    background-size: cover;
-    padding-top: 200px;
+    padding-top: 150px;
     text-align: center;
     color: white;
     font-size: 2em;
@@ -19,4 +18,20 @@
 
 .howItWorks {
     padding-top: 50px;
+}
+
+.logo {
+    margin: 25px;
+    height: 250px;
+    width: 250px;
+    background: no-repeat center white;
+    background-size: contain;
+    display: inline-block;
+    border-radius: 125px;
+}
+
+.logos {
+    text-align: center;
+    background-color: #eee;
+    border-radius: 10px;
 }
