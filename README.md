@@ -1,6 +1,6 @@
-##This is a python server for VEEP.
+## This is a python server for VEEP.
 
-##Table of Contents (to be updated)
+## Table of Contents (to be updated)
 
 ## Starting a Development Server
 
@@ -22,5 +22,17 @@ To start a development server:
 * make a new virtualenv
 * run `pipenv run python setup.py`
 * go to localhost:5000
+
+## Heroku, Remote Host and Running Commands
+
+Heroku is our hosting service, and has various commands that make it easy to debug and interact with prod
+environment systems.
+
+To run a command on a Heroku remote host, use `heroku run <command>`, where command is the command you
+would run locally in terminal/bash, etc.
+
+For example, locally one may want to run `flask shell` to work with imported values and ORM sqlalchemy.
+Asking Heroku to do the same via `heroku run flask shell` will perform the same command but on our remote host.
+This is good, since we can easily fix things unrelated to src code through local console!
 
 app.config['key']
