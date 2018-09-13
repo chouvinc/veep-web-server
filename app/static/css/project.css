@@ -1,3 +1,19 @@
+#apply {
+    text-align: center;
+    color: black;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 100px 0;
+    width: 600px;
+    margin: 100px auto;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+}
+
 .projectItem {
     /* padding let's us line up border w/ title */
     padding: 25px;

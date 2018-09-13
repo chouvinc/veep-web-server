@@ -62,5 +62,11 @@
         </div>
         {% endfor %}
     </div>
+
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTiEbdfCYEbVHP2XMbgt2utLhWEDOsnBPCuX20zUeLg4qsBw/viewform?usp=sf_link"><div id="apply">Apply</div></a>
 </div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('static', filename='scripts/project.js')}}"></script>
 {% endblock %}
