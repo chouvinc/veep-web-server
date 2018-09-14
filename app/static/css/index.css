@@ -21,10 +21,10 @@
 }
 
 .logo {
-    margin: 25px;
-    height: 250px;
-    width: 250px;
-    background: no-repeat center white;
+    margin: auto 25px;
+    height: 15rem;
+    width: 15rem;
+    background: no-repeat center #eee;
     background-size: contain;
     display: inline-block;
     border-radius: 125px;
@@ -32,6 +32,4 @@
 
 .logos {
     text-align: center;
-    background-color: #eee;
-    border-radius: 10px;
 }

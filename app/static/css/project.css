@@ -4,7 +4,6 @@
     border: 2px solid black;
     border-radius: 10px;
     padding: 100px 0;
-    width: 600px;
     margin: 100px auto;
     font-size: 50px;
     font-weight: bold;
@@ -32,8 +31,6 @@ a {
 }
 
 .projectContainer {
-    width: 45%;
-    padding: 10px;
     display: inline-block;
     vertical-align: top;
 }
@@ -63,3 +60,11 @@ a {
 ::-webkit-scrollbar-thumb:hover {
     background: #aea9f2;
 }
+
+@media only screen and (min-width: 500px){
+    .projectContainer {
+        width: 45%;
+        padding: 10px;
+    }
+}
+
