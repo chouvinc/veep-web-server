@@ -1,60 +1,211 @@
 {% extends 'base.htm' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/submit.css')}}">
+{% endblock %}
+
 {% block content %}
 <div class="submitForm">
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p class="submit_type">
-            {{ form.select.label }}<br>
-            {{ form.select }}
-        </p>
+    {% if init_page %}
+    <ul>
+        <li><a href="{{ url_for('.submit_type', type='project') }}">Submit Project</a></li>
+        <li><a href="{{ url_for('.submit_type', type='team_member') }}">Submit Team Member</a></li>
+        <li><a href="{{ url_for('.submit_type', type='executive') }}">Submit Executive</a></li>
+        <li><a href="{{ url_for('.submit_type', type='event') }}">Submit Event</a></li>
+    </ul>
+    {% endif %}
 
+    {% if form %}
+    <form action="{{ url_for('.submit_type', type=type) }}" method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
         <div id="selections">
-            <p class="projects" id="project">
+            {% if form.id == 'project' %}
+            <div class="projects" id="project">
                 <div>
                     {{ form.project_title.label}}<br>
                     {{ form.project_title }}
                 </div>
+
+                {% for error in form.project_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
                 <div>
                     {{ form.project_text.label }}<br>
                     {{ form.project_text }}
                 </div>
 
+                {% for error in form.project_text.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
                 <div>
                     {{ form.project_tags.label }}<br>
                     {{ form.project_tags }}
                 </div>
-            </p>
 
-            <p class="teamMembers" id="team_member" hidden>
-                {{ form.team_name.label }}<br>
-                {{ form.team_name }}<br>
+                {% for error in form.project_tags.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
-                {{ form.team_member_name.label }}<br>
-                {{ form.team_member_name }}<br>
+                <div>
+                    {{ form.project_veepx.label }}
+                    {% for field in form.project_veepx %}
+                    <tr>
+                        <td>{{ field }}</td>
+                        <td>{{ field.label }}</td>
+                    </tr>
+                    {% endfor %}
+                </div>
 
-                {{ form.team_member_email.label}}<br>
-                {{ form.team_member_email}}
-            </p>
+                {% for error in form.project_tags.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            {% elif form.id == 'team_member' %}
+            <div class="teamMembers" id="team_member">
+                <div>
+                    {{ form.team_name.label }}<br>
+                    {{ form.team_name }}<br>
+                </div>
 
-            <p class="executives" id="executive" hidden>
-                {{ form.exec_team.label }}<br>
-                {{ form.exec_team }}<br>
+                {% for error in form.team_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
-                {{ form.exec_member_name.label }}<br>
-                {{ form.exec_member_name }}<br>
+                <div>
+                    {{ form.team_member_name.label }}<br>
+                    {{ form.team_member_name }}<br>
+                </div>
 
-                {{ form.exec_member_email.label }}<br>
-                {{ form.exec_member_email }}
-            </p>
+                {% for error in form.team_member_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
 
-            <p>{{ form.submit() }}</p>
+                <div>
+                    {{ form.team_member_email.label}}<br>
+                    {{ form.team_member_email}}
+                </div>
+
+                {% for error in form.team_member_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.role.label}}<br>
+                    {{ form.role}}
+                </div>
+
+                {% for error in form.role.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+
+                {{ form.photo.label}}<br>
+                {{ form.photo}}
+            </div>
+                {% for error in form.photo.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            {% elif form.id == 'executive' %}
+            <div class="executives" id="executive">
+                <div>
+                    {{ form.exec_team.label }}<br>
+                    {{ form.exec_team }}<br>
+                </div>
+
+                {% for error in form.exec_team.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.exec_member_name.label }}<br>
+                    {{ form.exec_member_name }}<br>
+                </div>
+
+                {% for error in form.exec_member_name.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.exec_member_email.label }}<br>
+                    {{ form.exec_member_email }}
+                </div>
+
+                {% for error in form.exec_member_email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.role.label}}<br>
+                    {{ form.role}}
+                </div>
+
+                {% for error in form.role.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.photo.label}}<br>
+                    {{ form.photo}}
+                </div>
+
+                {% for error in form.photo.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            {% elif form.id == 'event' %}
+            <div class="events" id="event">
+                <div>
+                    {{ form.event_title.label}}<br>
+                    {{ form.event_title }}<br>
+                </div>
+
+                {% for error in form.event_title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div class="date">
+                    <span>
+                        {{ form.event_year.label }}
+                        {{ form.event_year }}
+                    </span>
+
+                    <span>
+                        {{ form.event_month.label }}
+                        {{ form.event_month }}
+                    </span>
+
+                    <span>
+                        {{ form.event_day.label }}
+                        {{ form.event_day }}
+                    </span>
+                </div>
+
+                <div>
+                    {{ form.event_location.label}}<br>
+                    {{ form.event_location}}<br>
+                </div>
+
+                {% for error in form.event_location.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <div>
+                    {{ form.event_desc.label}}<br>
+                    {{ form.event_desc}}
+                </div>
+
+                {% for error in form.event_desc.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
+        {{ form.submit() }}
     </form>
+    {% endif %}
 </div>
-{% endblock %}
-
-{% block scripts %}
-<script src="{{url_for('static', filename='scripts/submit.js')}}"></script>
 {% endblock %}

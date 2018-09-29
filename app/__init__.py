@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask_mail import Mail
 from config import Config
 
@@ -18,7 +17,6 @@ mail.init_app(app)
 
 # give it a database (for now using sqlite)
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 # login manager
 login_manager = LoginManager()
@@ -35,11 +33,11 @@ from app.main.controllers import main
 app.register_blueprint(main, url_prefix='/')
 app.register_blueprint(admin, url_prefix='/admin')
 
-from app.util import models
-
 # shell stuff to make development easier
 from app import app, db
-from app.util.models import User, Post
+from app.util.models import User, Post, Project, Event
+
+
 @app.shell_context_processor
 def make_shell_context():
-    return {"db": db, "User": User, "Post": Post}
+    return {"db": db, "User": User, "Project": Project, 'Event': Event}

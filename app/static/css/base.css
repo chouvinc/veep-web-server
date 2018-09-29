@@ -3,7 +3,7 @@
     background-color: #fff;
     padding: 0 10px;
     position: fixed;
-    border-bottom: 3px solid #123456;
+    font-size: 0.8em;
 }
 
 .header ul {
@@ -27,6 +27,8 @@
     width: 100%;
     padding: 0 0 10px 0;
     bottom: 0;
+    background-color: #eaecef;
+    border-top: 3px solid #9893DA;
 }
 
 .footer ul {
@@ -36,11 +38,15 @@
 .footer a {
     text-decoration: none;
     text-align: center;
+    color: #5c5672;
+}
+
+.footer a:hover {
+    text-decoration: underline;
 }
 
 .category {
     display: inline-block;
-    margin: 25px 50px;
 }
 
 .category a {
@@ -54,7 +60,7 @@
 
 .contentWrapper {
     width: 60%;
-    padding: 150px 0 100px 0;
+    padding: 100px 0 100px 0;
     margin: auto;
     min-height: 500px;
 }
@@ -92,6 +98,11 @@ textarea {
     width: 100%;
 }
 
+hr {
+    width: 75%;
+    margin: 50px auto;
+}
+
 /* id's */
 #blog {
     margin: 0 20px;
@@ -100,16 +111,8 @@ textarea {
 
 #veep {
     font-weight: bold;
-}
-
-#veep > a {
     font-size: 1.1em;
     color: #9893DA;
-}
-
-#affiliates {
-    padding-right: 50px;
-    float: right;
 }
 
 /* classes for every template to use */
@@ -122,8 +125,50 @@ textarea {
     line-height: 1.75;
 }
 
+.contentBody {
+    color: #444444;
+    font-size: 0.90em;
+}
+
 .selected {
     border-radius: 4px;
     background-color: #efefef;
     transition: 200ms;
+}
+
+.inline {
+    display: inline-block;
+}
+
+select {
+    border: 3px solid #9893DA;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 0.75em;
+    font-weight: bold;
+    outline: none;
+    padding: 10px;
+}
+
+input {
+    background-color: white;
+    border: 1px solid #777777;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.emphasize {
+    color: #9893DA;
+    font-weight: 600;
+}
+
+.expanded > li {
+    padding-top: 25px;
+    margin-top: 50px;
+}
+
+.expanded {
+    border-left: 3px solid #9893DA;
 }

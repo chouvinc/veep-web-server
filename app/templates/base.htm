@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-      <title>Test</title>
+      <title>VEEP</title>
       <link rel="stylesheet" href="{{url_for('static', filename='css/base.css')}}">
       <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
       {% block stylesheets %}
@@ -13,29 +13,31 @@
     <div class="container">
       <div class="header colorBorder">
           <ul class="headerItems">
-              <li id="veep"><a href="{{url_for('main.index')}}">VEEP</a></li>
-              <li><a href="{{url_for('main.projects')}}">Projects</a></li>
-              <li><a href="{{url_for('main.contact_us')}}">Contact Us</a></li>
-              <li><a href="{{url_for('main.our_team')}}">Our Team</a></li>
-              <li><a href="{{url_for('main.events')}}">Events</a></li>
+              <a href="{{url_for('main.index')}}"><li id="veep">VEEP</li></a>
+              <a href="{{url_for('main.projects')}}"><li>Projects</li></a>
+              <a href="{{url_for('main.contact_us')}}"><li>Contact Us</li></a>
+              <a href="{{url_for('main.our_team')}}"><li>Our Team</li></a>
+              <a href="{{url_for('main.events')}}"><li>Events</li></a>
               <!--TODO: add the links for this once its up-->
-              <li id="blog"><a href="/">Blog</a></li>
+              <a href="/"><li id="blog">Blog</li></a>
           </ul>
       </div>
-
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul>
-          {% for message in messages %}
-          <li class="warning">{{ message }}</li>
-          {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
 
       {% block banner %}
       {% endblock %}
       <div class="contentWrapper">
+
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
+
+
           {% block content %}
           {% endblock %}
       </div>
@@ -45,31 +47,30 @@
               <div class="category">
                   <ul>
                       <h4>Social Media</h4>
-                      <li><a href="/">Facebook</a></li>
-                      <li><a href="/">Placeholder</a></li>
+                      <li><a href="https://www.facebook.com/uoftveep/">Facebook</a></li>
+                      <li><a href="/">Reddit</a></li>
                   </ul>
               </div>
               <div class="category">
                   <ul>
                       <h4>Apply</h4>
                       <!--TODO probably should find a more efficient way of doing this (IDK how efficent python string concatenations are done) -- Vincent-->
-                      <li><a href="{{url_for('main.apply') + '/project_manager'}}">Project Manager</a></li>
-                      <li><a href="{{url_for('main.apply') + '/project_member'}}">Project Member</a></li>
-                      <li><a href="{{url_for('main.apply') + '/marketing'}}">Marketing</a></li>
-                      <li><a href="{{url_for('main.apply') + '/business_development'}}">Business Development</a></li>
-                      <li><a href="{{url_for('main.apply') + '/operations'}}">Operations</a></li>
-                      <li><a href="{{url_for('main.apply') + '/digital_team'}}">Digital Team</a></li>
+                      <!--TODO replace these links eventually w/ embedded google forms, based on type.-->
+                      <!--<li><a href="{{'/apply/project_manager'}}">Project Manager</a></li>-->
+                      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeTiEbdfCYEbVHP2XMbgt2utLhWEDOsnBPCuX20zUeLg4qsBw/viewform?usp=sf_link">Project Member</a></li>
+                      <!--<li><a href="{{'/apply/marketing'}}">Marketing</a></li>-->
+                      <!--<li><a href="{{'/apply/business_development'}}">Business Development</a></li>-->
+                      <!--<li><a href="{{'/apply/operations'}}">Operations</a></li>-->
+                      <!--<li><a href="{{'/apply/digital_team'}}">Digital Team</a></li>-->
                   </ul>
               </div>
               <div class="category" id="affiliates">
                   <ul>
-                      <h4>Affiliated With</h4>
+                      <h4>Contributors</h4>
                       <!--TODO change these to actual orgs-->
-                      <li><a href="/">Organization 1</a></li>
-                      <li><a href="/">Organization 1</a></li>
-                      <li><a href="/">Organization 1</a></li>
-                      <li><a href="/">Organization 1</a></li>
-                      <li><a href="/">Organization 1</a></li>
+                      <li><a href="https://www.tpvh.ca/">TPVH</a></li>
+                      <li><a href="https://www.pluralsightone.org/">Pluralsight One</a></li>
+                      <li><a href="https://lighthouselabs.ca/">Lighthouse Labs</a></li>
                   </ul>
               </div>
           </div>
@@ -82,6 +83,10 @@
               integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
               crossorigin="anonymous"></script>
         <script src="{{url_for('static', filename='scripts/base.js')}}"></script>
+        <script type="text/javascript">
+            //TODO: actually pass this serverside so we know on client side where the url is
+            const SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+        </script>
       {% block scripts %}
       {% endblock %}
     </div>

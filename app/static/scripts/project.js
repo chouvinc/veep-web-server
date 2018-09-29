@@ -1,7 +1,7 @@
-$('.header li').mouseenter((e) => {
+$('#apply').mouseenter((e) => {
     $(e.currentTarget).addClass('selected');
 });
 
-$('.header li').mouseleave((e) => {
+$('#apply').mouseleave((e) => {
     $(e.currentTarget).removeClass('selected');
 });

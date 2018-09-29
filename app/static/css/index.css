@@ -1,13 +1,35 @@
 .banner {
     width: 100%;
     min-height: 250px;
-    background-color: #F5B0CB;
-    padding-top: 250px;
+    background: url("../images/logo.jpg") no-repeat #aea9f2 0px 25px;
+    padding-top: 150px;
     text-align: center;
     color: white;
+    font-size: 2em;
 }
 
-.banner > span {
-    display: inline-block;
+.banner > div {
     vertical-align: middle;
+}
+
+.banner h2 {
+    margin-top: 0;
+}
+
+.howItWorks {
+    padding-top: 50px;
+}
+
+.logo {
+    margin: auto 25px;
+    height: 15rem;
+    width: 15rem;
+    background: no-repeat center #eee;
+    background-size: contain;
+    display: inline-block;
+    border-radius: 125px;
+}
+
+.logos {
+    text-align: center;
 }

@@ -13,7 +13,10 @@ gunicorn = "*"
 datetime = "*"
 sqlalchemy = "*"
 flask-mail = "*"
+flask-script = "*"
+"psycopg2" = "*"
+"boto3" = "*"
+Pipfile = "*"
 
 [requires]
 python_version = "3.6"
-

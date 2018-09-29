@@ -6,34 +6,200 @@
 
 {% block banner %}
 <div class="banner colorBorder">
-    <span><h2>VEEP</h2></span>
+
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="introduction contentEntry">
     <h3>What is VEEP?</h3>
-    <p>VEEP stands for Volunteering Engineering Experience Program. We work with not-for-profits to build
+    <p class="contentBody">VEEP stands for <span class="emphasize">Volunteering Engineering Experience Program</span>. We work with not-for-profits to build
     the next cohort of engineering students! Working with us means you are looking for...</p>
 </div>
 
 <div class="engagement contentEntry">
     <h3>Community Engagement</h3>
-    <p>You'd love the chance to make a difference in your local community. You bring a balance of impact and
+    <p class="contentBody">You'd love the chance to make a difference in your local <span class="emphasize">community</span>. You bring a balance of impact and
     empathy to the volunteering community. But you also want...</p>
 </div>
 
 <div class="learning contentEntry">
     <h3>Learning Opportunities</h3>
-    <p>You want to explore engineering across different disciplines -- and learn more about them, in a "doing"
+    <p class="contentBody">You want to explore engineering across different disciplines -- and learn more about them, in a "doing"
     context! Classes are amazing for building fundamentals, but now it's time to build off of theory into
-    practice. But you're an engineering hopeful, so you definitely want...</p>
+    <span class="emphasize">practice</span>. But you're an engineering hopeful, so you definitely want...</p>
 </div>
 
 <div class="experience contentEntry">
     <h3>Experience</h3>
-    <p>If you don't want to branch out, that's fine too! VEEP supports a wide variety of projects so you'll
+    <p class="contentBody">If you don't want to branch out, that's fine too! VEEP supports a wide variety of projects so you'll
     be able to accumulate professional know-how before you enter the workforce. Employers like 4.0's but
-    they <i>love</i> work experience!</p>
+    they <i>love</i> <span class="emphasize">work experience</span>!</p>
 </div>
+
+<div class="howItWorks">
+    <h3>How It Works</h3>
+
+    <span>
+        <h4 class="inline">
+            I am a(n) :
+        </h4>
+        <select name="imRole" id="imRole">
+            <option value="team_member" selected>Team Member</option>
+            <option value="project_manager">Project Manager</option>
+            <option value="executive">Executive</option>
+            <option value="nfp">Not-for-Profit</option>
+        </select>
+    </span>
+
+    <div id="roleTypes" class="contentEntry">
+
+        <!--TODO: Should maybe pipe this html to a data store somewhere so it doesn't clutter this file
+    TODO: (could possibly also generate this using json that we store in Postgres) -->
+
+        <div id="team_member" class="contentBody">
+            <p>
+                Team members are the bread and butter of VEEP. We depend on
+                <span class="emphasize">You</span> to make up our engineering teams! As a student you will be expected to
+                contribute towards a project for either 1 or 2 semesters, keeping track of progress and communicating with your
+                Not-for-Profit clients and Project Managers along the way.
+            </p>
+
+            <p>Your timeline will look a little something like this (double the time length for Weeks 3~10 for year-long projects) :</p>
+
+            <ul class="expanded">
+                <li>
+                    Week 1: Meet with your team, Project Manager, and Not-for-Profit. Develop preliminary
+                    project requirements and discuss between your team which features build into the Minimal Viable
+                    Product (MVP) that your client can accept.
+                </li>
+                <li>
+                    Week 2~3: Revise, plan, and begin executing your project requirements. Your Project Manager
+                    will outline what we call a <span class="emphasize">Rolling Schedule</span>, and how they
+                    plan to keep development fast-paced and continuous throughout the school year.
+                </li>
+                <li>
+                    Week 4~7: Implement the MVP that you defined in the earlier weeks! We don't expect you to
+                    completely finish all aspects of the project! Many of our projects are quite large in scope and
+                    often have additional features to work towards. We understand that there are other commitments
+                    during the school year which can impact your availability to work on your VEEP project. However,
+                    it is expected that you stay <span class="emphasize">Accountable</span> and plan ahead. VEEP will
+                    treat lack of communication as a sign that you no longer wish to participate and you will no longer
+                    be able to work on your project or sign-up for other VEEP opportunities in the future.
+                </li>
+                <li>
+                    Week 8~9: Clean-up and polish your MVP. Did you do a poor job documenting the process to
+                    meet deadlines? Use this 2-week period to fix any minor issues that were in the prototype's
+                    design. If you wouldn't buy your own project as a product or service then it is not polished enough!
+                </li>
+                <li>
+                    Week 10~12: Work towards those additional features! Congratulations! At this point you already have
+                    a fully-functional and robust product. If you wanted to end here you technically could, but we
+                    really encourage students to further extend their projects to meet the stretch goals designed for
+                    these features.
+                </li>
+                <li>
+                    Week 13~14: Assemble your documentation and prepare for the <span class="emphasize"><a href="{{url_for('.events')}}">
+                    Year End Project Showcase</a></span>. This is your chance to show Not-for-Profits that you are good
+                    enough for professional work! The Year End Project Showcase is a new initiative we began to show
+                    off VEEP's technical rigour and creativity. Even if your project isn't finished at this point,
+                    we'd still like you to present your engineering processes and your approaches to solving problems!
+                </li>
+            </ul>
+        </div>
+
+        <div id="project_manager" class="contentBody" hidden>
+            <p>
+                Project Managers are for students looking to improve their leadership and long-term analysis abilities.
+                We would like to invite anyone with previous <span class="emphasize">Industry or Research</span> experience
+                to come and volunteer at VEEP. Each Project Manager is assigned 1~2 teams and should have domain knowledge
+                directly related to the field of the project they're managing.
+            </p>
+
+            <p>
+                In the past students have been given the responsibility of making overall design decisions, but for a
+                learning experience this can often lead to unstable or unmaintainable projects. As a Project Manager
+                with previous work experience, you support your team with high-level architectural outlines that give the teams
+                direction and reassurance. You will personally review each and every feature implemented by the students;
+                whether that be through code review, simulations, or end-to-end testing. Discussion between you and individual
+                team members is highly encouraged, as we hope to foster the next wave of project managers from our
+                VEEP teams!
+            </p>
+        </div>
+
+        <div id="executive" class="contentBody" hidden>
+            <p>
+                VEEP Executives are the drivers behind program changes and new initiatives. They are typically students
+                who themselves have been through VEEP and want to make a lasting <span class="emphasize">impact</span>
+                on the organization. As the organization matures we will be recruiting for more and more executives
+                across all teams. For now, take a look at the different teams we have and think about how you would
+                like to contribute towards VEEP:
+            </p>
+
+            <ul class="expanded">
+                <li>
+                    Marketing - The marketing team has traditionally only consisted of one person, but we're hoping
+                    to change that to increase our campus presence. Executives on the marketing team look after
+                    major events that occur throughout the year, such as the Club Fair, and produce advertising
+                    materials to be used for the events. They also oversee our social media and keep both the
+                    Not-for-Profits and students aware of the latest VEEP news.
+                </li>
+                <li>
+                    Business Development - Business Development, or BD, reaches out to the community for lasting
+                    relations between VEEP and the outside world. All of the projects shown on this website have
+                    been formed through BD. In addition to projects, the BD team looks for external resources that
+                    VEEP can offer to our students. Things like workshops, online courses, and access to coaching
+                    are all driven by BD.
+                </li>
+                <li>
+                    Operations - Executives in Operations (or Ops) are responsible for making sure VEEP runs smoothly.
+                    They gather and analyze information to understand any inefficiencies that are present in the
+                    organization and prioritize, plan, and execute solutions to fix them. While BD executives find new
+                    initiatives, Ops handle how they are actually implemented in the context of the organization.
+                </li>
+                <li>
+                    Digital Team - Like marketing, VEEP has only ever had one person at a time working on the Digital
+                    Team. As our organization grows, this team's role has proven to increase in importance. Things like
+                    metrics are all much more convenient to gather using software rather than manual methods. In addition,
+                    updates to the website and other software platforms become much more difficult and time consuming
+                    with only a single person in the role. We are looking for dedicated, upcoming software developers
+                    to improve both our website and other internal tooling. Previous experience is preferred,
+                    but we don't mind mentoring as long as applicants demonstrate enthusiasm.
+                </li>
+            </ul>
+        </div>
+
+        <div id="nfp" class="contentBody" hidden>
+            <p>
+                Welcome to our website! Not-for-Profits are the core of our operation and without them, VEEP would
+                cease to exist! As an NFP, you can expect to communicate first with our BD representatives, and then
+                extensively with our student teams and PM's. Special circumstances such as long-lasting partnerships
+                spanning multiple projects may also have you in consistent contact with Ops. As a Not-for-Profit, you
+                are exposed to all aspects of the VEEP life cycle.
+            </p>
+
+            <p>
+                Please don't hesitate to reach out by <a href="{{ url_for('.contact_us') }}">Contacting Us</a>. If
+                this is the first time you've heard about VEEP, we can connect you to one of our BD executives to draft
+                up requirements and schedule you for the next iteration of VEEP projects!
+            </p>
+        </div>
+    </div>
+</div>
+
+<hr>
+<div class="logos contentEntry">
+    <h2>Current Clients</h2>
+    {% for client in clients %}
+        <a href="{{ client.site_url }}"><div class="logo" style="background-image: url('{{ client.image_url }}')"></div></a>
+    {% endfor %}
+    <h2>Contributors</h2>
+    {% for contributor in contributors %}
+        <a href="{{ contributor.site_url }}"><div class="logo" style="background-image: url('{{ contributor.image_url }}')"></div></a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/index.js') }}"></script>
 {% endblock %}
