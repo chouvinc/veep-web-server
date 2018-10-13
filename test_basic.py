@@ -20,6 +20,7 @@ class BasicTests(unittest.TestCase):
  
         # Disable sending emails during unit testing
         #mail.init_app(app)
+        
         self.assertEqual(app.debug, False)
  
     # executed after each test
