@@ -5,6 +5,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     # Specify which emails are admins that want to receive website emails
     ADMINS = os.environ.get('ADMINS') or "vin.chou@mail.utoronto.ca"
+
     # Specify mail server config
     MAIL_SERVER = "smtp.zoho.com"
     MAIL_PORT = 465
@@ -33,5 +34,7 @@ class Config(object):
     }
     S3_ENDPOINT = os.environ.get('S3_ENDPOINT') or 'https://veep-member-pictures.s3.amazonaws.com/'
     UPLOAD_FOLDER = '/uploads'
+
+    CLOUDFRONT_DOMAIN = 'dm6wzlkxkxah7.cloudfront.net'
 
 

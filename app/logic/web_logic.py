@@ -1,6 +1,8 @@
 from app.dao import project_dao, member_dao, event_dao
 from app.mappers import display_string_mapper
+from urllib.parse import urlsplit, urlunsplit
 
+from app import app
 
 def get_all_projects():
     return project_dao.get_veep_projects(), project_dao.get_veepx_projects()
@@ -18,7 +20,13 @@ def get_all_members():
             # need to be careful here, if we commit the member now it could overwrite the old data
             member.role = display_string_mapper.map[member.role]
 
+            # replace s3 url with cloudfront url
+            use_cloudfront_url(member)
+
         team_list.append({"name": title, "members": members})
+
+    for executive in executives:
+        use_cloudfront_url(executive)
 
     return executives, team_list
 
@@ -38,3 +46,9 @@ def get_project_names_from_projects():
 def get_all_events():
     return event_dao.get_all_events()
 
+
+def use_cloudfront_url(member):
+    # replace s3 url with cloudfront url
+    parsed = list(urlsplit(member.photo_url))
+    parsed[1] = app.config['CLOUDFRONT_DOMAIN']
+    member.photo_url = urlunsplit(parsed)
