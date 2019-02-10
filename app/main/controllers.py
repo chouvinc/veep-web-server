@@ -6,6 +6,16 @@ from app.util.form import ContactUsForm
 main = Blueprint('main', __name__, template_folder='templates')
 
 
+@main.context_processor
+def inject_application_forms():
+    # a form dict: {name: <name>, link: <google_forms_link>}
+    forms = [
+        {'name': 'Project Managers (PM)', 'link': 'https://goo.gl/forms/zOtGgcJorFHVUAZn1'},
+        {'name': 'Web Developer', 'link': 'https://goo.gl/forms/pXMo5ItYmqAEvw0i2'},
+    ]
+    return dict(forms=forms)
+
+
 @main.route('/index')
 @main.route('/')
 def index():

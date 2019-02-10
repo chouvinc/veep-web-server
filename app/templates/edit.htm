@@ -7,7 +7,36 @@
 {% block content %}
 
 {% if init_page %}
+    <ul>
+        <li><a href="{{ url_for('.edit_type', type='veep_project') }}">Edit VEEP Project</a></li>
+        <li><a href="{{ url_for('.edit_type', type='veepx_project') }}">Edit VEEP-X Project</a></li>
+        <li><a href="{{ url_for('.edit_type', type='executive') }}">Edit Executive</a></li>
+        <li><a href="{{ url_for('.edit_type', type='team_member') }}">Edit Team Member</a></li>
+        <li><a href="{{ url_for('.edit_type', type='event') }}">Edit Event</a></li>
+    </ul>
+
 {% else %}
+    <div class="editObject">
+        <h3>Current {{ typeString }}s</h3>
+        {% for object in edit_objects %}
+        <div id="objectWrapper">
+            <div class="objectContainer" id="{{object.id}}">
+                <div class="objectTitle">{{object.title}}</div>
+                <div class="objectItem">
+                    <div class="objectBody contentBody">{{object.body}}</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="submitEditWrapper">
+        <input type="submit" class="submitEdit">
+    </div>
 {% endif %}
 
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='scripts/edit.js') }}"></script>
 {% endblock %}

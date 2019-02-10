@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user
 from app.util.form import LoginForm, RegistrationForm, ChangePasswordForm
 from app.util.models import User
 from app import db
-from app.logic import submit_info_logic, delete_logic, edit_info_logic, email_logic
+from app.logic import submit_info_logic, delete_logic, edit_info_logic, email_logic, get_objects_logic
 from app.mappers.display_string_mapper import map
 
 import datetime
@@ -94,7 +94,7 @@ def delete_type(type):
         # a redirect link for AJAX to consume.
         return jsonify({'redirect': url_for('.delete')})
     else:
-        delete_objects = delete_logic.populate_objects_by_type(type)
+        delete_objects = get_objects_logic.populate_objects_by_type(type)
 
         return render_template('delete.htm',
                                title='Delete',
@@ -107,24 +107,39 @@ def delete_type(type):
 def edit():
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
-    return render_template('edit.htm')
+    return render_template('edit.htm',
+                           title='Edit',
+                           edit_objects=None,
+                           init_page=True)
 
 
+# WARNING: THIS IS STILL VERY BROKEN! WE'RE MANUALLY DELETING + ADDING THINGS LIVE RIGHT NOW
+# TODO: Figure out clean solution to edit through admin portal.
+# Since pre-filling forms breaks functionality for FileFields in WTForms, will need workaround!
 @admin.route('/edit/<type>', methods=['GET', 'POST'])
 def edit_type(type):
-    # TODO: add generic authentication layer (consider using decorators, I don't know too much about them so will
-    # need to research and see what's standard practice). ~Vincent
     if not current_user.is_authenticated:
         return redirect(url_for('.login'))
 
-    form = edit_info_logic.get_fields_for(type)
+    if request.method == 'POST':
+        # JSON being sent through AJAX.
+        json = request.get_json()
 
-    if form.validate_on_submit:
-        edit_info_logic.form_handler(form)
-        flash('Edited!')
-        return redirect(url_for('.edit'))
+        type = json['type']
+        ids_to_delete = json['ids']
 
-    return render_template('edit.htm', title='Edit', form=form)
+        edit_logic.edit_selected_objects(type, ids_to_update)
+        # This isn't a request from Flask's request context, will need to manually return
+        # a redirect link for AJAX to consume.
+        return jsonify({'redirect': url_for('.edit')})
+    else:
+        edit_objects = get_objects_logic.populate_objects_by_type(type)
+
+        return render_template('edit.htm',
+                               title='Edit',
+                               edit_objects=edit_objects,
+                               typeString=map[type],
+                               type=type)
 
 
 # Use this endpoint to add new users to the admin portal

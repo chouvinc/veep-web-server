@@ -54,14 +54,9 @@
               <div class="category">
                   <ul>
                       <h4>Apply</h4>
-                      <!--TODO probably should find a more efficient way of doing this (IDK how efficent python string concatenations are done) -- Vincent-->
-                      <!--TODO replace these links eventually w/ embedded google forms, based on type.-->
-                      <!--<li><a href="{{'/apply/project_manager'}}">Project Manager</a></li>-->
-                      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSeTiEbdfCYEbVHP2XMbgt2utLhWEDOsnBPCuX20zUeLg4qsBw/viewform?usp=sf_link">Project Member</a></li>
-                      <!--<li><a href="{{'/apply/marketing'}}">Marketing</a></li>-->
-                      <!--<li><a href="{{'/apply/business_development'}}">Business Development</a></li>-->
-                      <!--<li><a href="{{'/apply/operations'}}">Operations</a></li>-->
-                      <!--<li><a href="{{'/apply/digital_team'}}">Digital Team</a></li>-->
+                      {% for form in forms %}
+                      <li><a href="{{ form.link }}">{{ form.name }}</a></li>
+                      {% endfor %}
                   </ul>
               </div>
               <div class="category" id="affiliates">
