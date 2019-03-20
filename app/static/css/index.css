@@ -1,11 +1,10 @@
 .banner {
+    background-image: url('../images/logo.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
     width: 100%;
-    min-height: 250px;
-    background: url("../images/logo.jpg") no-repeat #aea9f2 0px 25px;
-    padding-top: 150px;
-    text-align: center;
-    color: white;
-    font-size: 2em;
+    height: 0;
+    padding-top: 43.89%;
 }
 
 .banner > div {
