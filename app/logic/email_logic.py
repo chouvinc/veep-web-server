@@ -9,7 +9,7 @@ admins = Config.ADMINS.split(' ')
 
 
 def form_handler(form):
-    message = Message(WEBSITE_PREFIX + form.subject.data, sender='operations@uoftveep.com', recipients=[] + admins)
+    message = Message(WEBSITE_PREFIX + form.subject.data, sender=form.email, recipients=['operations@uoftveep.com'] + admins)
     message.body = """
     From: %s <%s>
     %s
