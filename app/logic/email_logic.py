@@ -9,7 +9,7 @@ admins = Config.ADMINS.split(' ')
 
 
 def form_handler(form):
-    message = Message(WEBSITE_PREFIX + form.subject.data, sender='autobot@uoftveep.com', recipients=[] + admins)
+    message = Message(WEBSITE_PREFIX + form.subject.data, sender='operations@uoftveep.com', recipients=[] + admins)
     message.body = """
     From: %s <%s>
     %s
@@ -18,7 +18,7 @@ def form_handler(form):
 
 
 def send_set_password_email(email, username, password):
-    message = Message(WEBSITE_PREFIX + "Set Your Admin Password", sender='autobot@uoftveep.com', recipients=[email])
+    message = Message(WEBSITE_PREFIX + "Set Your Admin Password", sender='operations@uoftveep.com', recipients=[email])
     message.body = SET_PASSWORD_EMAIL_STRING % (''.join([BASEURL, 'admin/login']), username, password, ''.join([BASEURL, 'admin/change_password']))
     mail.send(message)
 
