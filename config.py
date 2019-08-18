@@ -11,8 +11,8 @@ class Config(object):
     MAIL_PORT = 465
     MAIL_USE_SSL = True
     MAIL_USE_TLS = False
-    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
-    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+    MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'operations@uoftveep.com'
+    MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'VEEP4Lyfe'
 
     # "Secret" key
     SECRET_KEY = os.environ.get('SECRET_KEY') or '1A2B3Cabc!@#!@#'
